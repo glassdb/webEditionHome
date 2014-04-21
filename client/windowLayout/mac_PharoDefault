@@ -1,0 +1,8 @@
+TDWindowProperties{
+  #windowOrigin:Point[0.5,0.5],
+  #listWindowWidth:16,
+  #codeWindowHeight:18,
+  #codeWindowWidth:40,
+  #shellWindowHeight:12,
+  #debuggerWindowWidth:32
+}

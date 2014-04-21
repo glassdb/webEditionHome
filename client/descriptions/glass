@@ -1,0 +1,19 @@
+OGCustomSessionDescription {
+	#name : 'glass',
+	#stoneHost : 'localhost',
+	#stoneName : 'seaside',
+	#gemHost : 'localhost',
+	#netLDI : '50377',
+	#gemTask : 'gemnetobject',
+	#userId : 'DataCurator',
+	#password : 'swordfish',
+	#osUserId : '',
+	#osPassword : '',
+	#dataDirectory : '',
+	#backupDirectory : '',
+	#gemstoneVersion : '3.2.0',
+	#gciLibraryName : nil,
+	#adornmentColor : Color {
+		#rgb : 858783334
+	}
+}

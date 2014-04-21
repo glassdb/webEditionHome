@@ -1,0 +1,6 @@
+updateClient --clientRepo=github://dalehenrich/tode:master/repository
+updateServer --clientScriptPath=/opt/git/glassHome/server/scripts
+bu backup tode.dbf
+mount /opt/git/glassHome/home /
+logout
+bu backup home.dbf
