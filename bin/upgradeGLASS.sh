@@ -4,12 +4,34 @@
 # Copyright (c) 2014 GemTalk Systems, LLC <dhenrich@gemtalksystems.com>.
 #=========================================================================
 
-if [ "$1x" = "x" ] ; then
-  COPYDBF_DOC="  - the extent to be upgraded has been copied to $GEMSTONE_DATADIR by you."
-else
-  EXTENT_NAME=$1
-  COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR."
-fi
+usage() {
+  cat <<EOF
+Usage:
+upgradeGLASS.sh [-e <source-extent-path>][-C]
+Parameters:
+    -e <source-extent-path>
+        If present, the extent at source-extent-path is copied to $GEMSTONE_DATADIR
+    -C
+        If present, the -C flag is passed to the startstone command indicating an upgrade
+        from GemStone 2.x
+EOF
+}
+
+
+COPYDBF_DOC="  - the extent to be upgraded has been copied to $GEMSTONE_DATADIR by you."
+STARTSTONE_OPTION=""
+
+while getopts "e:C" opt; do
+  case $opt in
+    e ) 
+        EXTENT_NAME=$OPTARG
+        COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR."
+      ;;
+    C ) STARTSTONE_OPTION="-C";;
+   \? ) usage; exit 1 ;;
+  esac
+done
+
 
 cat <<EOF
 
@@ -40,7 +62,7 @@ else
   rm -f $GEMSTONE_DATADIR/tranlog*.dbf
 fi
 
-$GEMSTONE/bin/startstone $GEMSTONE_NAME
+$GEMSTONE/bin/startstone $STARTSTONE_OPTION $GEMSTONE_NAME
 if [ "$?" != "0" ]; then
   echo "ERROR: starting upgrade stone"
   exit 1
