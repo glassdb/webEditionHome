@@ -129,6 +129,7 @@ set user DataCurator pass swordfish
 login
 
 display oops
+level 2
 iferr 1 stk
 iferr 2 stack
 iferr 3 input pop
@@ -169,6 +170,7 @@ GsDeployer
               show: ex description.
             ex resume ].
   ].
+true
 %
 commit
 logout
