@@ -8,7 +8,7 @@ if [ "$1x" = "x" ] ; then
   COPYDBF_DOC="  - the extent to be upgraded has been copied to $GEMSTONE_DATADIR by you."
 else
   EXTENT_NAME=$1
-  COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR (if supplied as argument)."
+  COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR."
 fi
 
 cat <<EOF
@@ -17,7 +17,7 @@ This script performs a standard upgrade for the stone $GEMSTONE_NAME.
 This script:
 
 $COPYDBF_DOC
-  - removes any old tranlog files in the the $GEMSTONE_DATA directory.
+  - removes any old tranlog files in the the $GEMSTONE_DATADIR directory.
   - starts the stone $GEMSTONE_NAME.
   - runs the upgradeImage script.
   - sets up the Bootstrap globals for the upgradeSeasideImage script.
@@ -32,11 +32,11 @@ Press the return key to continue...
 EOF
 read prompt
 
-if [ "$1x" = "x" ] ; then
-  echo "no extent file supplied, upgrading extent in $GEMSTONE_DATA"
+if [ "${EXTENT_NAME}x" = "x" ] ; then
+  echo "no extent file supplied, upgrading extent in $GEMSTONE_DATADIR"
 else
   echo "copying extent $1 to $GEMSTONE_DATADIR"
-  copydbf $1 $GEMSTONE_DATADIR/extent0.dbf
+  cp $EXTENT_NAME $GEMSTONE_DATADIR/extent0.dbf
   rm -f $GEMSTONE_DATADIR/tranlog*.dbf
 fi
 
