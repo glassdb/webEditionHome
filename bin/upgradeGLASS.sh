@@ -1,20 +1,64 @@
-#! /bin/bash
+#! /bin/bash -x
 
 #=========================================================================
-# Copyright (c) 2013-2014 GemTalk Systems, LLC <dhenrich@gemtalksystems.com>.
+# Copyright (c) 2014 GemTalk Systems, LLC <dhenrich@gemtalksystems.com>.
 #=========================================================================
 
-startstone $GEMSTONE_NAME
+if [ "$1x" = "x" ] ; then
+  COPYDBF_DOC="  - the extent to be upgraded has been copied to $GEMSTONE_DATADIR by you."
+else
+  EXTENT_NAME=$1
+  COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR (if supplied as argument)."
+fi
+
+cat <<EOF
+
+This script performs a standard upgrade for the stone $GEMSTONE_NAME.
+This script:
+
+$COPYDBF_DOC
+  - removes any old tranlog files in the the $GEMSTONE_DATA directory.
+  - starts the stone $GEMSTONE_NAME.
+  - runs the upgradeImage script.
+  - sets up the Bootstrap globals for the upgradeSeasideImage script.
+  - runs the upgradeSeasideImage script.
+  - runs an application upgrade script, that you should have customized
+    BEFORE running this script
+
+If an error occurs during execution of this script, the details of the error are
+available in the topazerrors.log file.
+
+Press the return key to continue...
+EOF
+read prompt
+
+if [ "$1x" = "x" ] ; then
+  echo "no extent file supplied, upgrading extent in $GEMSTONE_DATA"
+else
+  echo "copying extent $1 to $GEMSTONE_DATADIR"
+  copydbf $1 $GEMSTONE_DATADIR/extent0.dbf
+  rm -f $GEMSTONE_DATADIR/tranlog*.dbf
+fi
+
+$GEMSTONE/bin/startstone $GEMSTONE_NAME
+if [ "$?" != "0" ]; then
+  echo "ERROR: starting upgrade stone"
+  exit 1
+fi
+echo "stone $GEMSTONE_NAME started..."
 
 # start standard upgrade
-upgradeImage -s $GEMSTONE_NAME
+$GEMSTONE/bin/upgradeImage -s $GEMSTONE_NAME << EOF
+
+EOF
 if [ "$?" != "0" ]; then
   echo "ERROR: running upgradeImage. See topazerrors.log for more information"
   exit 1
 fi
+echo "Upgrade image complete..."
 
 # setup Bootstrap globals
-topaz -l -T50000 << EOF
+$GEMSTONE/bin/topaz -l -T50000 > $upgradeLogDir/topaz.out << EOF
 output pushnew $upgradeLogDir/topazBootstrap.out only
 set gemstone $GEMSTONE_NAME
 
@@ -61,17 +105,20 @@ if [ "$?" != "0" ]; then
   echo "ERROR: running topaz to set up Bootstrap globals"
   exit 1
 fi
-
+echo "Bootstrap globals complete..."
 
 # start "seaside" upgrade to upgrade GLASS to 1.0-beta.9.1
-upgradeSeasideImage -s $GEMSTONE_NAME
+$GEMSTONE/seaside/bin/upgradeSeasideImage -s $GEMSTONE_NAME << EOF
+
+EOF
 if [ "$?" != "0" ]; then
   echo "ERROR: running upgradeImage. See topazerrors.log for more information"
   exit 1
 fi
+echo "upgrade seaside image complete..."
 
 #install application code
-topaz -l -T50000 << EOF
+$GEMSTONE/bin/topaz -l -T50000 > $upgradeLogDir/topaz.out << EOF
 output pushnew $upgradeLogDir/topazApplication.out only
 set gemstone $GEMSTONE_NAME
 
@@ -88,19 +135,24 @@ iferr 3 input pop
 iferr 4 exit 1
 
 run
+| project version repository |
+project := 'Seaside3'.
+version := '3.0.10'.
+repository := 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main'.
+
 GsDeployer
   deploy: [
     [
     Metacello new
-      configuration: 'Seaside3';
-      version: '3.0.9.1';
-      repository: 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main';
+      configuration: project;
+      version: version;
+      repository: repository;
       get.
     [
     Metacello new
-      configuration: 'Seaside3';
-      version: '3.0.9.1';
-      repository: 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main';
+      configuration: project;
+      version: version;
+      repository: repository;
       onConflict: [ :ex | ex allow ];
       load: 'ALL' 
          ] on: MCPerformPostloadNotification do: [:ex |
@@ -124,7 +176,10 @@ output pop
 exit 0
 EOF
 if [ "$?" != "0" ]; then
-  echo "ERROR: running topaz to install application code"
+  echo "ERROR: running topaz to install application code. See topazerrors.log for more information"
   exit 1
 fi
+echo "upgrade application complete"
+
+exit 0
 
