@@ -1,4 +1,4 @@
-#! /bin/bash -x
+#! /bin/bash
 
 #=========================================================================
 # Copyright (c) 2014 GemTalk Systems, LLC <dhenrich@gemtalksystems.com>.
@@ -100,9 +100,6 @@ run
  UserGlobals
   at: #BootstrapRepositoryDirectory
   put: GsPackageLibrary getMonticelloRepositoryDirectory.
- UserGlobals
-  at: #BootstrapApplicationPostloadClassList
-  put: #( #MBConfigurationRoot).
 true
 %
 run
@@ -151,7 +148,6 @@ set user DataCurator pass swordfish
 login
 
 display oops
-level 2
 iferr 1 stk
 iferr 2 stack
 iferr 3 input pop
