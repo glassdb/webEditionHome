@@ -46,7 +46,7 @@ run
     UserGlobals
       at: #BootstrapApplicationLoadSpecs
       put: {
-        { 'ConfigurationOfGLASS' . '1.0-beta.8.7.2' . #('default') .
+        { 'ConfigurationOfGLASS' . '1.0-beta.9.1' . #('default') .
               BootstrapRepositoryDirectory } .
            }.
   ].
@@ -90,22 +90,33 @@ iferr 4 exit 1
 run
 GsDeployer
   deploy: [
+    [
     Metacello new
       configuration: 'Seaside3';
       version: '3.0.9.1';
       repository: 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main';
       get.
+    [
     Metacello new
       configuration: 'Seaside3';
       version: '3.0.9.1';
       repository: 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main';
       onConflict: [ :ex | ex allow ];
-      onWarning: [ :ex |
-            Transcript
+      load: 'ALL' 
+         ] on: MCPerformPostloadNotification do: [:ex |
+           (#() includes: ex postloadClass theNonMetaClass name)
+             ifTrue: [ 
+               "perform initialization"
+               ex resume: true ]
+             ifFalse: [
+               GsFile gciLogServer: '  Skip ', ex postloadClass name asString, ' initialization.'.
+                ex resume: false ] ] 
+     ]  on: Warning do: [:ex |
+           Transcript
               cr;
               show: ex description.
-            ex resume ];
-      load: loadList ] ].
+            ex resume ].
+  ].
 %
 commit
 logout
