@@ -13,11 +13,17 @@ true
 %
 
 run
+"Explicitly load latest Grease configuration, since we're loading the #bleeding edge"
+Metacello new
+   configuration: 'Grease';
+   repository: 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main';
+   get.
 GsDeployer
   deploy: [
   {
-    {'Metacello'. 'filetree:///opt/git/metacello-work/repository'. 'default'. #()}.
-    {'GLASS1'. 'filetree:///opt/git/glass/repository'. 'default'. #()}.
+    {'Metacello'. 'filetree:///opt/git/metacello-work/repository'. 'default'. #() }.
+    {'GLASS1'. 'filetree:///opt/git/glass/repository'. 'default'. #() }.
+    {'Seaside3'. 'github://glassdb/Seaside31:gemstone3.1/repository'. 'CI'. #() }.
   } do: [:ar |
     | project repository loads skipInit |
     project := ar at: 1.
