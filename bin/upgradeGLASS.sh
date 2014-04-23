@@ -84,14 +84,15 @@ else
   rm -f $GEMSTONE_DATADIR/tranlog*.dbf
 fi
 
+echo "STARTING upgrade stone $GEMSTONE_NAME"
 $GEMSTONE/bin/startstone $STARTSTONE_OPTION $GEMSTONE_NAME
 if [ "$?" != "0" ]; then
   echo "ERROR: starting upgrade stone"
   exit 1
 fi
-echo "stone $GEMSTONE_NAME started..."
 
 # start standard upgrade
+echo "STARTING standard upgradeImage "
 $GEMSTONE/bin/upgradeImage -s $GEMSTONE_NAME << EOF
 
 EOF
@@ -99,9 +100,9 @@ if [ "$?" != "0" ]; then
   echo "ERROR: running upgradeImage. See topazerrors.log for more information"
   exit 1
 fi
-echo "Upgrade image complete..."
 
 # setup Bootstrap globals
+echo "STARTING setup Bootstrap globals"
 $GEMSTONE/bin/topaz -l -T50000 > $upgradeLogDir/topaz.out << EOF
 output pushnew $upgradeLogDir/topazBootstrap.out only
 set gemstone $GEMSTONE_NAME
@@ -129,9 +130,9 @@ if [ "$?" != "0" ]; then
   echo "ERROR: running topaz to set up Bootstrap globals"
   exit 1
 fi
-echo "Bootstrap globals complete..."
 
 # start "seaside" upgrade to upgrade GLASS to 1.0-beta.9.1
+echo "STARTING upgradeSeasideImage"
 $GEMSTONE/seaside/bin/upgradeSeasideImage -s $GEMSTONE_NAME << EOF
 
 EOF
@@ -139,9 +140,9 @@ if [ "$?" != "0" ]; then
   echo "ERROR: running upgradeImage. See topazerrors.log for more information"
   exit 1
 fi
-echo "upgrade seaside image complete..."
 
 #install application code
+echo "STARTING install application code"
 $GEMSTONE/bin/topaz -l -T50000 > $upgradeLogDir/topaz.out << EOF
 output pushnew $upgradeLogDir/topazApplication.out only
 set gemstone $GEMSTONE_NAME
@@ -169,7 +170,6 @@ if [ "$?" != "0" ]; then
   echo "ERROR: running topaz to install application code. See topazerrors.log for more information"
   exit 1
 fi
-echo "upgrade application complete"
 
 exit 0
 
