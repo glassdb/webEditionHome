@@ -10,11 +10,11 @@ To use GLASS Home, [Fork][5] the GLASS Home project, so that you can keep up
 with the latest changes on the site and make your own contributions.
 
 GLASS Home is not a replacement or substitute for standard [GemStone/S 64 
-documentation][6]. GLASS Home provides supplemental material for using working
+documentation][6]. GLASS Home provides supplemental material for working
 with the [GemStone Web Edition][7].
 
 ## Topics
-1. [Installation](docs/install/installGuide.md)
+1. [Getting Started with GLASS](docs/install/gettingStartedWithGLASS.md)
 2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
 
 [1]: http://code.google.com/p/glassdb/
