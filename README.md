@@ -10,8 +10,8 @@ To use GLASS Home, [Fork][5] the GLASS Home project, so that you can keep up
 with the latest changes on the site and make your own contributions.
 
 
-[1] http://code.google.com/p/glassdb/
-[2] http://gemstonesoup.wordpress.com/
-[3] http://gemtalksystems.com/index.php/community/community-for-glass-seaside/
-[4] https://github.com/glassdb/glassHome
-[5] https://help.github.com/articles/fork-a-repo
+[1]: http://code.google.com/p/glassdb/
+[2]: http://gemstonesoup.wordpress.com/
+[3]: http://gemtalksystems.com/index.php/community/community-for-glass-seaside/
+[4]: https://github.com/glassdb/glassHome
+[5]: https://help.github.com/articles/fork-a-repo
