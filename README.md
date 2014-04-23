@@ -1,6 +1,6 @@
 #GLASS Home
 
-[GLASS Home][4] is the new location for [GLASS][3] documentation. 
+[GLASS Home][4] is the new location for [GLASS][3] documentation and scripts. 
 
 Over time documentation will be updated and 
 consolidated into this location from the [Google glassdb project][1], the 
@@ -9,6 +9,9 @@ consolidated into this location from the [Google glassdb project][1], the
 To use GLASS Home, [Fork][5] the GLASS Home project, so that you can keep up 
 with the latest changes on the site and make your own contributions.
 
+## Topics
+1. [Installation](docs/install/README.md)
+2. [Upgrading to GemStone 3.2](docs/upgrade/README.md)
 
 [1]: http://code.google.com/p/glassdb/
 [2]: http://gemstonesoup.wordpress.com/
