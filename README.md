@@ -9,6 +9,10 @@ consolidated into this location from the [Google glassdb project][1], the
 To use GLASS Home, [Fork][5] the GLASS Home project, so that you can keep up 
 with the latest changes on the site and make your own contributions.
 
+GLASS Home is not a replacement or substitute for standard [GemStone/S 64 
+documentation][6]. GLASS Home provides supplemental material for using working
+with the [GemStone Web Edition][7].
+
 ## Topics
 1. [Installation](docs/install/installGuide.md)
 2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
@@ -18,3 +22,5 @@ with the latest changes on the site and make your own contributions.
 [3]: http://gemtalksystems.com/index.php/community/community-for-glass-seaside/
 [4]: https://github.com/glassdb/glassHome
 [5]: https://help.github.com/articles/fork-a-repo
+[6]: http://gemtalksystems.com/index.php/community/gss-support/documentation/gs64/
+[7]: http://gemtalksystems.com/index.php/products/glass-seaside/
