@@ -7,13 +7,22 @@
 usage() {
   cat <<EOF
 Usage:
-upgradeGLASS.sh [-e <source-extent-path>][-C]
+upgradeGLASS.sh -a <application-topaz-file> -b <bootstrap-topaz-file> [-C][-e <source-extent-path>]
 Parameters:
+    -a <application-topaz-file>
+        REQUIRED. 
+        Path to application load topaz input file. 
+        See topaz/upgradeGLASSApplication.tpz for an example.
+    -b <bootstrap-topaz-file>
+        REQUIRED. 
+        Path to Bootstrap setup topaz input file. 
+        See topaz/upgradeGLASSBootstrap.tpz for an example.
     -e <source-extent-path>
-        If present, the extent at source-extent-path is copied to $GEMSTONE_DATADIR
+        If present, the extent at source-extent-path is copied to 
+        $GEMSTONE_DATADIR
     -C
-        If present, the -C flag is passed to the startstone command indicating an upgrade
-        from GemStone 2.x
+        If present, the -C flag is passed to the startstone command 
+        indicating an upgrade from GemStone 2.x
 EOF
 }
 
@@ -21,8 +30,10 @@ EOF
 COPYDBF_DOC="  - the extent to be upgraded has been copied to $GEMSTONE_DATADIR by you."
 STARTSTONE_OPTION=""
 
-while getopts "e:C" opt; do
+while getopts "Ca:b:e:" opt; do
   case $opt in
+    a ) APPLICATION_TPZ=$OPTARG ;;
+    b ) BOOTSTRAP_TPZ=$OPTARG ;;
     e ) 
         EXTENT_NAME=$OPTARG
         COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR."
@@ -32,6 +43,17 @@ while getopts "e:C" opt; do
   esac
 done
 
+if [ "a$APPLICATION_TPZ" = "a" ]; then
+  echo "Missing application load file (-a)"
+  usage
+  exit 1
+fi
+
+if [ "a$BOOTSTRAP_TPZ" = "a" ]; then
+  echo "Missing upgrade bootstrap setup file (-b)"
+  usage
+  exit 1
+fi
 
 cat <<EOF
 
@@ -96,25 +118,8 @@ iferr 2 stack
 iferr 3 input pop
 iferr 4 exit 1
 
-run
- UserGlobals
-  at: #BootstrapRepositoryDirectory
-  put: GsPackageLibrary getMonticelloRepositoryDirectory.
-true
-%
-run
- UserGlobals
-  at: #BootstrapApplicationLoadSpecs
-  ifAbsent: [
-    UserGlobals
-      at: #BootstrapApplicationLoadSpecs
-      put: {
-        { 'ConfigurationOfGLASS' . '1.0-beta.9.1' . #('default') .
-              BootstrapRepositoryDirectory } .
-           }.
-  ].
- true
-%
+input $BOOTSTRAP_TPZ
+
 commit
 logout
 output pop
@@ -153,43 +158,8 @@ iferr 2 stack
 iferr 3 input pop
 iferr 4 exit 1
 
-run
-| project version repository |
-project := 'Seaside3'.
-version := '3.0.10'.
-repository := 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main'.
+input $APPLICATION_TPZ
 
-GsDeployer
-  deploy: [
-    [
-    Metacello new
-      configuration: project;
-      version: version;
-      repository: repository;
-      get.
-    [
-    Metacello new
-      configuration: project;
-      version: version;
-      repository: repository;
-      onConflict: [ :ex | ex allow ];
-      load: 'ALL' 
-         ] on: MCPerformPostloadNotification do: [:ex |
-           (#() includes: ex postloadClass theNonMetaClass name)
-             ifTrue: [ 
-               "perform initialization"
-               ex resume: true ]
-             ifFalse: [
-               GsFile gciLogServer: '  Skip ', ex postloadClass name asString, ' initialization.'.
-                ex resume: false ] ] 
-     ]  on: Warning do: [:ex |
-           Transcript
-              cr;
-              show: ex description.
-            ex resume ].
-  ].
-true
-%
 commit
 logout
 output pop

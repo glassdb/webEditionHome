@@ -1,0 +1,42 @@
+#=========================================================================
+# Copyright (c) 2014 GemTalk Systems, LLC <dhenrich@gemtalksystems.com>.
+#=========================================================================
+
+run
+| project version repository |
+project := 'Seaside3'.
+version := '3.0.10'.
+repository := 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main'.
+
+GsDeployer
+  deploy: [
+    [
+    Metacello new
+      configuration: project;
+      version: version;
+      repository: repository;
+      get.
+    [
+    Metacello new
+      configuration: project;
+      version: version;
+      repository: repository;
+      onConflict: [ :ex | ex allow ];
+      load: 'ALL' 
+         ] on: MCPerformPostloadNotification do: [:ex |
+           (#() includes: ex postloadClass theNonMetaClass name)
+             ifTrue: [ 
+               "perform initialization"
+               ex resume: true ]
+             ifFalse: [
+               GsFile gciLogServer: '  Skip ', ex postloadClass name asString, ' initialization.'.
+                ex resume: false ] ] 
+     ]  on: Warning do: [:ex |
+           Transcript
+              cr;
+              show: ex description.
+            ex resume ].
+  ].
+true
+%
+
