@@ -7,7 +7,7 @@ the [GemTalk Systems][2]
 
 You can choose to follow the step by step instructions in the [GemStone/S 64 
 Bit Installation Guide][3] or run the
-[installGemstone.sh script](../../../bin/install/installGemstone.sh).
+[installGemstone.sh script](../../bin/install/installGemstone.sh).
 
 ## Running Web Edition 
 ## Web Edition Development Environments
