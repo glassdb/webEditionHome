@@ -3,7 +3,14 @@
 #=========================================================================
 
 run
-{BaselineOfMetacello. BaselineOfGLASS1} do: [:cls | cls removeFromSystem].
+UserGlobals associations do: [:assoc |
+  assoc value isBehavior
+    ifTrue: [
+      (assoc key asString _findString: 'BaselineOf' startingAt: 1 ignoreCase: false) == 1
+         ifTrue: [
+           GsFile gciLogServer: '  removing the baseline ', assoc key asString printString.
+           assoc value removeFromSystem ] ] ].
+true
 %
 
 run
