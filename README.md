@@ -10,8 +10,8 @@ To use GLASS Home, [Fork][5] the GLASS Home project, so that you can keep up
 with the latest changes on the site and make your own contributions.
 
 ## Topics
-1. [Installation](docs/install/README.md)
-2. [Upgrading to GemStone 3.2](docs/upgrade/README.md)
+1. [Installation](docs/install/installGuide.md)
+2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
 
 [1]: http://code.google.com/p/glassdb/
 [2]: http://gemstonesoup.wordpress.com/
