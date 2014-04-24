@@ -1,5 +1,14 @@
 # Getting started with Web Edition
 
+To use **Web Edition Home**, [fork][4] and [clone][5] the **Web Edition Home** 
+project. With this repository cloned to your local machine you'll
+be able to customize the scripts for your own use and share the scripts
+with the rest of the community.
+
+It would be a good idea to define a `WE_HOME` environment variable in
+your `.bashrc` file, so that it is easy to access the shell scripts from
+anywhere on your local system. 
+
 ## Installation
 Downloads for the various versions of GemStone/S 64 bit are available from
 the [GemTalk Systems][2] 
@@ -82,3 +91,5 @@ GsDeployer
 [1]: http://gemtalksystems.com/index.php/community/gss-support/documentation/gs64/
 [2]: http://gemtalksystems.com
 [3]: http://gemtalksystems.com/index.php/community/gss-support/documentation/gs64/
+[4]: https://help.github.com/articles/fork-a-repo
+[5]: https://help.github.com/articles/fork-a-repo#step-2-clone-your-fork
