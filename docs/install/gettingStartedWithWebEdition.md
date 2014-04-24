@@ -9,8 +9,8 @@ It would be a good idea to define a `WE_HOME` environment variable in
 your `.bashrc` file, so that it is easy to access the shell scripts from
 anywhere on your local system. 
 
-## Installation
-Downloads for the various versions of GemStone/S 64 bit are available from
+## Installing Gemstone/S
+Downloads for the various versions of GemStone/S 64 bit are available on
 the [GemTalk Systems][2] 
 [ftp site](ftp://ftp.gemtalksystems.com/pub/GemStone64/).
 

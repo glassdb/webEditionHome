@@ -2,8 +2,7 @@
 
 usage() {
   cat <<EOF
-Usage:
-upgradeGLASS.sh -a <application-topaz-file> -b <bootstrap-topaz-file> [-C][-e <source-extent-path>]
+usage: $0 -a <application-topaz-file> -b <bootstrap-topaz-file> [-C][-e <source-extent-path>]
 Parameters:
     -a <application-topaz-file>
         REQUIRED. 
