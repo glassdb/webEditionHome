@@ -16,12 +16,12 @@ the [GemTalk Systems][2]
 
 You can choose to follow the step by step instructions in the [GemStone/S 64 
 Bit Installation Guide][3] or run the
-[installWebEdition.sh script](../../bin/install/installWebEditions.sh) that's 
-available in the `$WE_HOME/bin/install` directory. The *installWebEdition.sh* script is 
+[installWebEdition.sh script](../../bin/installWebEditions.sh) that's 
+available in the `$WE_HOME/bin` directory. The *installWebEdition.sh* script is 
 invoked by passing in the version of GemStone that you wish to install:
 
 ```Shell
-$WE_HOME/bin/install/installWebEdition.sh 3.2
+$WE_HOME/bin/installWebEdition.sh 3.2
 ```
 
 The script is intended for use with OS/X and Linux. Besides downloading the
@@ -65,21 +65,12 @@ GsDeployer
       version: version;
       repository: repository;
       get.
-    [
     Metacello new
       configuration: project;
       version: version;
       repository: repository;
       onConflict: [ :ex | ex allow ];
       load: 'ALL'
-         ] on: MCPerformPostloadNotification do: [:ex |
-           (#() includes: ex postloadClass theNonMetaClass name)
-             ifTrue: [
-               "perform initialization"
-               ex resume: true ]
-             ifFalse: [
-               GsFile gciLogServer: '  Skip ', ex postloadClass name asString, ' initialization.'.
-                ex resume: false ] ]
      ]  on: Warning do: [:ex |
            Transcript
               cr;
