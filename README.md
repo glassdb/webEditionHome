@@ -19,6 +19,10 @@ with the [GemTalk's Web Edition for GemStone/S 64 Bit][7].
 2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
 3. [GLASS, Seaside, Web Edition terminology](docs/terminology.md)
 
+The material in the **Web Edition Home** project is all licensed under the 
+[MIT license](license.txt) so that the community can help maintain the scripts and 
+documentation.
+
 [1]: http://code.google.com/p/glassdb/
 [2]: http://gemstonesoup.wordpress.com/
 [3]: http://gemtalksystems.com/index.php/community/community-for-glass-seaside/
