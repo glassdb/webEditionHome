@@ -8,7 +8,7 @@ the [GemTalk Systems][2]
 You can choose to follow the step by step instructions in the [GemStone/S 64 
 Bit Installation Guide][3] or run the
 [installWebEdition.sh script](../../bin/install/installWebEditions.sh) that's 
-available in the `bin/install` directory. The *installWebEdition.sh* script is 
+available in the `$WE_HOME/bin/install` directory. The *installWebEdition.sh* script is 
 invoked by passing in the version of GemStone that you wish to install:
 
 ```Shell
@@ -17,6 +17,7 @@ $WE_HOME/bin/install/installWebEdition.sh 3.2
 
 The script is intended for use with OS/X and Linux. Besides downloading the
 release from the GemTalk Systems ftp site, the script:
+
 1. unzips and installs the release in /opt/gemstone.
 1. links the release directory to `/opt/gemstone/product`, which is used
    by a number of the Web Edition utility scripts.
