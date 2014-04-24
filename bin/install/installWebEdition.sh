@@ -4,7 +4,7 @@
 # Copyright (C) VMware, Inc. 1986-2011.  All Rights Reserved.
 # Copyright (c) 2013-2014 GemTalk Systems, LLC <dhenrich@gemtalksystems.com>.
 #
-# Name - installGemstone.sh <gemstone version (e.g., 3.1.0.1)>
+# Name - installWebEdition.sh <gemstone version (e.g., 3.2)>
 #
 # Purpose - Automatically download and install a Linux or Mac version of GemStone
 #
@@ -22,15 +22,15 @@
 #    Download the GemStone product zipfile
 #    Uncompress the GemStone zipfile into /opt/gemstone/
 #    Soft link the GemStone directory to /opt/gemstone/product
-#    Copy the initial Seaside repository to data directory
+#    Copy the initial Web Edition repository to data directory
 #    Print build version information and available IPv4 addresses
-#    Remind user to source defSeaside
+#    Remind user to source defWebEdition
 #=========================================================================
 
 # Change these to change the specific version that will be installed
 # and the download location on Amazon S3.
 if [ "$1x" = "x" ] ; then
-  echo "installGemstone.sh <gemstone version (e.g., 3.1.0.1)>"
+  echo "installWebEdition.sh <gemstone version (e.g., 3.1.0.1)>"
   exit 1
 fi 
 vers="$1"
@@ -323,7 +323,7 @@ fi
 # Reminder to setup environment variables
 echo ""
 echo "[Info] Remember to set GEMSTONE environment variables by running:"
-echo "source /opt/gemstone/product/seaside/defSeaside"
+echo "source $WE_HOME/bin/defWebEdition"
 
 # End of script
 exit 0

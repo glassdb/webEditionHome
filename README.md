@@ -17,6 +17,7 @@ with the [GemTalk's Web Edition for GemStone/S 64 Bit][7].
 ## Topics
 1. [Getting Started with the Web Edition](docs/install/gettingStartedWithWebEdition.md)
 2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
+3. [GLASS, Seaside, Web Edition terminology](docs/terminology.md)
 
 [1]: http://code.google.com/p/glassdb/
 [2]: http://gemstonesoup.wordpress.com/
