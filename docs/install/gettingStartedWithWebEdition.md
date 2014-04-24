@@ -38,7 +38,9 @@ release from the GemTalk Systems ftp site, the script:
 2. [Jade](http://programminggems.wordpress.com/2013/10/01/jade/)
 3. [tODE (under development)](https://github.com/dalehenrich/tode)
 
-## Seaside and Web Edition
+## Seaside
+
+Workspace for loading Seaside into the **Web Edition**
 
 ```Smalltalk
 | project version repository |
