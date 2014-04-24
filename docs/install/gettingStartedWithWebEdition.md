@@ -29,8 +29,53 @@ release from the GemTalk Systems ftp site, the script:
    run.
 
 ## Running Web Edition 
+
+[Starting and stopping a stone](http://code.google.com/p/glassdb/wiki/StartingANativeStone)
+
 ## Web Edition Development Environments
+
+1. [GemTools](http://code.google.com/p/glassdb/wiki/GemTools)
+2. [Jade](http://programminggems.wordpress.com/2013/10/01/jade/)
+3. [tODE (under development)](https://github.com/dalehenrich/tode)
+
 ## Seaside and Web Edition
+
+```Smalltalk
+| project version repository |
+project := 'Seaside3'.
+version := '3.0.10'.
+repository := 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main'.
+
+GsDeployer
+  deploy: [
+    [
+    Metacello new
+      configuration: project;
+      version: version;
+      repository: repository;
+      get.
+    [
+    Metacello new
+      configuration: project;
+      version: version;
+      repository: repository;
+      onConflict: [ :ex | ex allow ];
+      load: 'ALL'
+         ] on: MCPerformPostloadNotification do: [:ex |
+           (#() includes: ex postloadClass theNonMetaClass name)
+             ifTrue: [
+               "perform initialization"
+               ex resume: true ]
+             ifFalse: [
+               GsFile gciLogServer: '  Skip ', ex postloadClass name asString, ' initialization.'.
+                ex resume: false ] ]
+     ]  on: Warning do: [:ex |
+           Transcript
+              cr;
+              show: ex description.
+            ex resume ].
+  ].
+```
 
 [1]: http://gemtalksystems.com/index.php/community/gss-support/documentation/gs64/
 [2]: http://gemtalksystems.com
