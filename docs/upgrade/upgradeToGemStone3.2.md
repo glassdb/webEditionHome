@@ -41,8 +41,8 @@ You can take one of two routes:
 
 1. Create a package branch for 3.2, where you simply make the necessary
    changes for 3.2 in-place and then save the Monticello package,
-   with a branch name. A package named *MyApplication-Core* would be
-   saved as the package *MyApplication-Core.v32*. Your configuration baseline
+   with a branch name. For example, the package named *MyApplication-Core* would be
+   saved as *MyApplication-Core.v32*. Your configuration baseline
    would look like the following:
 
    ```Smalltalk
@@ -79,14 +79,7 @@ spec
         with: [ spec includes: 'MyApplication-32-Core' ];
       package: 'MyApplication-32-Core'
         with: [ spec requires: 'MyApplication-Core' ] ]
-   ```
-
-so that you
-have a *common* package for common code, a 2.x or 3.1.x package for the
-code that is specific to GemStone 2.x or 3.1.x, and a 3.2.x package for the code
-that is specific to Gemstone 3.2.
-
- 
+   ``` 
 
 [1]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Linux-3.2.pdf
 [2]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Mac-3.2.pdf
