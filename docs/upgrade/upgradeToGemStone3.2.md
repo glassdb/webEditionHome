@@ -1,5 +1,11 @@
 #Upgrade to GemStone 3.2
 
+---
+
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
+
+---
+
 To perform a GemStone/S Web Edition upgrade, you need to accomplish
 three things:
 
@@ -51,7 +57,11 @@ for creating a custom upgrade script for your application:
 
 ##Before Upgrading
 
+---
+
 **READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
+
+---
 
 As part of the upgrade process, you need to port your application code to
 GemStone 3.2 and verify that the application code itself works well in
@@ -128,7 +138,11 @@ isn't required.
 
 ##Upgrade Script
 
+---
+
 **READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
+
+---
 
 The [upgrade.sh script][3]
 
@@ -138,6 +152,8 @@ The [upgrade.sh script][3]
 4. [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file)
 5. [Run *upgradeSeasideImage* script](#run-upgradeseasideimage-script)
 6. [Execute *application-load* topaz file](#execute-application-load-topaz-file)
+
+---
 
 ### Copy extent and remove tranlog files
 This step is part of the script mainly as a convenenience during 
