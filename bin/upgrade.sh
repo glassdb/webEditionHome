@@ -19,17 +19,17 @@
 #  2. A stone named $GEMSTONE_NAME is started. If the -C option
 #     is present, the stone is started with the -C option.
 #     The -C option is required if you are upgrading from 2.x.
-#  3. Execute the standard upgradeImage script. If an error
+#  3. Run the standard upgradeImage script. If an error
 #     occurs details about the error or errors can found in 
 #     topazerrors.log file.
-#  4. Bootstrap Globals defined by loading the topaz input file
-#     specified by the -b option. 
-#  5. Execute the standard upgradeSeasideImage script to upgrade
+#  4. Define bootstrap globals by executing the bootstrap globals 
+#     topaz input file specified in the -b option. 
+#  5. Run the standard upgradeSeasideImage script to upgrade
 #     ConfigurationOfGLASS to the correct version. If an error
 #     occurs details about the error or errors can found in 
 #     topazerrors.log file.
-#  6. Upgrade your application code by loading the topaz input file
-#     specified by the -a option.
+#  6. Upgrade your application code by executing the application load
+#     topaz input file specified in the -a option.
 #
 # For more information about using this script, see the "Upgrade to
 # GemStone 3.2 article at:
@@ -62,16 +62,16 @@ $upgradeLogDir
 
 usage() {
   cat <<EOF
-usage: $0 -a <application-topaz-file> -b <bootstrap-topaz-file> [-C][-e <source-extent-path>]
+usage: $0 -a <application-load> -b <bootstrap-globals> [-C][-e <source-extent-path>]
 Parameters:
-    -a <application-topaz-file>
+    -a <application-load>
         REQUIRED. 
         Path to application load topaz input file. 
-        See topaz/upgradeGLASSApplication.tpz for an example.
-    -b <bootstrap-topaz-file>
+        See upgrade/loadSeaside3.0.10.tpz for an example.
+    -b <bootstrap-global>
         REQUIRED. 
-        Path to Bootstrap setup topaz input file. 
-        See topaz/upgradeGLASSBootstrap.tpz for an example.
+        Path to bootstrap global topaz input file. 
+        See upgrade/bootstrapConfigurationOf.tpz for an example.
     -e <source-extent-path>
         If present, the extent at source-extent-path is copied to 
         $GEMSTONE_DATADIR

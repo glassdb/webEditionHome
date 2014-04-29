@@ -35,23 +35,23 @@ for creating a custom upgrade script for your application:
 #  2. A stone named $GEMSTONE_NAME is started. If the -C option
 #     is present, the stone is started with the -C option.
 #     The -C option is required if you are upgrading from 2.x.
-#  3. Execute the standard upgradeImage script. If an error
+#  3. Run the standard upgradeImage script. If an error
 #     occurs details about the error or errors can found in 
 #     topazerrors.log file.
-#  4. Bootstrap Globals defined by loading the topaz input file
-#     specified by the -b option. 
-#  5. Execute the standard upgradeSeasideImage script to upgrade
+#  4. Define bootstrap globals by executing the bootstrap globals 
+#     topaz input file specified in the -b option. 
+#  5. Run the standard upgradeSeasideImage script to upgrade
 #     ConfigurationOfGLASS to the correct version. If an error
 #     occurs details about the error or errors can found in 
 #     topazerrors.log file.
-#  6. Upgrade your application code by loading the topaz input file
-#     specified by the -a option.
+#  6. Upgrade your application code by executing the application load
+#     topaz input file specified in the -a option.
 #
 ```
 
 ##Before Upgrading
 
-**READ THE INSTALL GUIDES for [Linux][1] and [Mac][2]**. 
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
 
 As part of the upgrade process, you need to port your application code to
 GemStone 3.2 and verify that the application code itself works well in
@@ -128,31 +128,22 @@ isn't required.
 
 ##Upgrade Script
 
-**READ THE INSTALL GUIDES for [Linux][1] and [Mac][2]**. 
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
 
-The [upgrade.sh][3] shell script 
+1. [Copy extent and remove tranlog files]
+2. [Start stone]
+3. [Run *upgradeImage* script]
+4. [Execute *bootstrap-globals* topaz file]
+5. [Run *upgradeSeasideImage* script]
+6. [Execute *application-load* topaz file]
 
 
-
-
-```
-usage: ./upgrade.sh -a <application-topaz-file> -b <bootstrap-topaz-file> [-C][-e <source-extent-path>]
-Parameters:
-    -a <application-topaz-file>
-        REQUIRED. 
-        Path to application load topaz input file. 
-        See topaz/upgradeGLASSApplication.tpz for an example.
-    -b <bootstrap-topaz-file>
-        REQUIRED. 
-        Path to Bootstrap setup topaz input file. 
-        See topaz/upgradeGLASSBootstrap.tpz for an example.
-    -e <source-extent-path>
-        If present, the extent at source-extent-path is copied to 
-        
-    -C
-        If present, the -C flag is passed to the startstone command 
-        indicating an upgrade from GemStone 2.x
-```
+### Copy extent and remove tranlog files
+### Start stone
+### Run *upgradeImage* script
+### Execute *bootstrap-globals* topaz file
+### Run *upgradeSeasideImage* script
+### Execute *application-load* topaz file
 
 [1]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Linux-3.2.pdf
 [2]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Mac-3.2.pdf
