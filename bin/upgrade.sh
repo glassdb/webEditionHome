@@ -150,9 +150,9 @@ if [ "$?" != "0" ]; then
   exit 1
 fi
 
-$GEMSTONE/bin/waitstone $GEMSTONE_NAME 1
+$GEMSTONE/bin/waitstone $GEMSTONE_NAME 5
 if [ "$?" != "0" ]; then
-  echo "The stone $GEMSTONE_NAME has not started after waiting 1 minutes."
+  echo "The stone $GEMSTONE_NAME has not started after waiting 5 minutes."
   echo "Please look at the stone log file to see what is going on."
   echo "It may be necessary to increase the timout."
   exit 1

@@ -181,7 +181,9 @@ make sure that there are no tranlog files left over from previous runs.
 The location of the source extent is specified by the `-e` option:
 
 ```Shell
-$WE_HOME/bin/upgrade.sh -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf
+$WE_HOME/bin/upgrade.sh -C -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf \
+                        -a $WE_HOME/bin/upgrade/loadSeaside3.0.10.tpz \
+                        -b $WE_HOME/bin/upgrade/bootstrapConfigurationOf
 ```
 
 If you are copying the extent from the data dir of an old stone (as
@@ -192,7 +194,7 @@ be performed and you are responsible for making sure that the proper
 extent is present in the $GEMSTONE_DATADIR.
 
 ### Start stone
-Once the source extent is in place, this script starts the stone using
+Once the source extent is in place, the script starts the stone using
 the stone name specified by the $GEMSTONE_NAME environment variable. The
 stone is started with the following command:
 
@@ -207,11 +209,156 @@ from GemStone 2.4.x), then the stone is started as follows:
 $GEMSTONE/bin/startstone -C $GEMSTONE_NAME
 ```
 
+After the stone is started, the script waits 5 minutes for the stone to
+be ready for logins.
+
 ### Run *upgradeImage* script
+Once the stone has been started, the script runs *upgradeImage*
+using the following command:
+
+```Shell
+$GEMSTONE/bin/upgradeImage -s $GEMSTONE_NAME
+```
+If there are errors during the exectuion of the script, 
+the *topazerrors.log* file contains pointers to the error conditions. 
+
 ### Execute *bootstrap-globals* topaz file
+
+As described in the *Configure Seaside Upgrade* section of the 
+**Installation Guides for [Linux][1] or [Mac][2]** there are a number of
+**Bootstrap Globals**  that can be set to control the operation of the
+*upgradeSeasideImage* script.
+
+The original intent of the *upgradeSeasideImage* script was that it
+would bootstrap the correct version of the ConfigurationOfGLASS (GLASS
+1.0-beta.9.1 for GemStone 3.2) into the image as well as load the
+correct version of your application. 
+
+The script made the assumption
+that it would be relatively straightforward to arrange to have all of
+the mcz files used by your application located in a single
+directory-based Monticello repository
+(**BootstrapRepositoryDirectory**). With the increased usage of git-base 
+repositories, this particular assumption is no longer valid.
+
+[As pointed out by Pieter Nagel][4] in a discussion on the [GLASS mailing
+list][5], it turns out that the
+*upgradeSeasideImage* really only needs to bootstrap the code referenced
+by **ConfigurationOfGLASS** and produce an upgraded version of the
+*extent0.seaside.dbf* file.
+
+To that end I have created a default [*bootstrap-globals*
+file](../../bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz) with the following
+contents:
+
+```Smalltalk
+ UserGlobals
+  at: #BootstrapRepositoryDirectory
+  put: GsPackageLibrary getMonticelloRepositoryDirectory.
+true
+%
+run
+ UserGlobals
+  at: #BootstrapApplicationLoadSpecs
+  ifAbsent: [
+    UserGlobals
+      at: #BootstrapApplicationLoadSpecs
+      put: {
+        { 'ConfigurationOfGLASS' . '1.0-beta.9.1' . #('default') .
+              BootstrapRepositoryDirectory } .
+           }.
+  ].
+```
+
+The above is the absolute minimum needed to correctly bootstrap GLASS
+into an upgraded repository.
+
+
+The location of the *bootstrap-globals* file is specified by the `-b` option:
+
+```Shell
+$WE_HOME/bin/upgrade.sh -C -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf \
+                        -a $WE_HOME/bin/upgrade/loadSeaside3.0.10.tpz \
+                        -b $WE_HOME/bin/upgrade/bootstrapConfigurationOf
+```
+
+In the event that you want to follow the original formula of upgrading
+using the full range of **Bootstrap Globals**, then you can create and substitute your 
+own *bootstrap-globals* file. 
+
 ### Run *upgradeSeasideImage* script
 ### Execute *application-load* topaz file
+For example, The
+*topazerrors.log* file contains lines like the following:
+
+```
+near line 110 of file /export/foos2/users/dhenrich/3.0/n_gss64bit/upgrades/upgradeDir/topazApplication_1.out, ERROR: UNEXPECTED ERROR
+topaz> time
+ 04/23/2014 14:10:46.634 PDT
+```
+
+that reference an error at a particular line number in the given file.
+Here's the chunk of the file referenced in the last error:
+
+```
+--transcript--'Warning: This package depends on the following classes:
+  BaselineOf
+You must resolve these dependencies before you will be able to load these definitions:
+  BaselineOfMetacello
+  BaselineOfMetacello>>baseline:
+  BaselineOfMetacello>>gemstone10beta311PostLoadDoIt
+  BaselineOfMetacello>>reprimeRegistryIssue197
+  BaselineOfMetacello>>testResourcePostLoadDoIt
+'
+--transcript--'Loaded -> BaselineOfMetacello-ChristopheDemarey.68 --- filetree:///opt/git/metacello-work/repository --- filetree:///opt/git/metacello-work/repository'
+-----------------------------------------------------
+GemStone: Error         Nonfatal
+a MessageNotUnderstood occurred (error 2010), a UndefinedObject does not understand  #'project'
+Error Category: 231169 [GemStone] Number: 2010  Arg Count: 4 Context : 299651585 exception : 246793217
+Arg 1: [19544065 sz:7 cls: 110849 Symbol] project
+Arg 2: [2 sz:0 cls: 74241 SmallInteger] 0 == 0x0
+Arg 3: [20 sz:0 cls: 76289 UndefinedObject] nil
+Arg 4: [246792961 sz:0 cls: 66817 Array] anArray
+ERROR: UNEXPECTED ERROR
+topaz> time
+ 04/23/2014 14:10:46.634 PDT
+topaz > exec iferr 1 : stk
+==> 1 MessageNotUnderstood >> defaultAction         @2 line 3   [methId 212055297]
+2 MessageNotUnderstood (AbstractException) >> _signalWith: @5 line 25   [methId 212120321]
+3 MessageNotUnderstood (AbstractException) >> signal @2 line 47   [methId 212123905]
+4 UndefinedObject (Object) >> doesNotUnderstand: @9 line 10   [methId 168907521]
+5 UndefinedObject (Object) >> _doesNotUnderstand:args:envId:reason: @7 line 12   [methId 168899073]
+6 [] in  ExecBlock0 (MetacelloScriptEngine) >> get @13 line 12   [methId 241598209]
+7 ExecBlock0 (ExecBlock) >> ensure:             @2 line 12   [methId 210496001]
+8 MetacelloProjectRegistration class >> copyRegistryRestoreOnErrorWhile: @8 line 14   [me
+thId 234215169]
+9 MetacelloScriptEngine >> get                  @2 line 6   [methId 234177537]
+10 [] in  ExecBlock1 (MetacelloScriptExecutor) >> execute: @11 line 12   [methId 241584129]
+11 [] in  ExecBlock1 (MetacelloScriptApiExecutor) >> executeString:do: @5 line 4   [methId 241436417]
+12 Array (Collection) >> do:                     @5 line 10   [methId 210610433]
+13 MetacelloScriptApiExecutor >> executeString:do: @5 line 4   [methId 235000833]
+14 Unicode7 (String) >> execute:against:         @2 line 2   [methId 242037505]
+15 MetacelloScriptApiExecutor (MetacelloScriptExecutor) >> execute: @6 line 6   [methId 234164993]
+16 Metacello >> execute                          @6 line 5   [methId 234410241]
+17 Metacello >> get                              @3 line 5   [methId 234409729]
+18 [] in  Executed Code                          @5 line 22   [methId 246608129]
+19 ExecBlock0 (ExecBlock) >> on:do:              @3 line 42   [methId 210482433]
+20 [] in  Executed Code                          @10 line 37   [methId 246504449]
+21 Array (Collection) >> do:                     @5 line 10   [methId 210610433]
+22 [] in  Executed Code                          @2 line 12   [methId 246500353]
+23 [] in  ExecBlock0 (GsDeployer) >> deploy:     @8 line 8   [methId 243635969]
+24 ExecBlock0 (ExecBlock) >> on:do:              @3 line 42   [methId 210482433]
+25 [] in  ExecBlock0 (GsDeployer) >> deploy:     @2 line 9   [methId 240842753]
+26 [] in  ExecBlock0 (MCPlatformSupport class) >> commitOnAlmostOutOfMemoryDuring: @3 line 7   [methId 241037057]
+27 ExecBlock0 (ExecBlock) >> ensure:             @2 line 12   [methId 210496001]
+```
+
+From this information, you should be able to deduce the problem. In the
+above case, the class **BaselineOf** was missing from the repository.
+
 
 [1]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Linux-3.2.pdf
 [2]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Mac-3.2.pdf
 [3]: ../../bin/upgrade.sh
+[4]: http://forum.world.st/Glass-Upgrade-GS-2-4-GS-3-1-when-GLASS-Seaside-etc-versions-have-already-diverged-tp4745943p4746183.html
+[5]: http://lists.gemtalksystems.com/mailman/listinfo/glass
