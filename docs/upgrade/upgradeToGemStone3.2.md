@@ -11,9 +11,43 @@ three things:
    different for GemStone 3.2.
 
 This upgrade process can get a little complicated, so I have created a
-shell script that acts as a driver for the entire Web Edition upgrade
+[shell script][3] that acts as a driver for the entire Web Edition upgrade
 process. The shell script can be used as is or it can be used as a guide
-for creating a custom upgrade script for your application.
+for creating a custom upgrade script for your application:
+
+```Shell
+# Script driver for Web Edition upgrades. Before using script
+# READ THE Install Guide for your platform.
+#
+# Before running this script the following environment variables
+# must be set:
+#
+#  GEMSTONE         - directory where GemStone resides
+#  GEMSTONE_DATADIR - directory where the extent and tranlogs reside
+#  GEMSTONE_NAME    - name of the stone
+#  upgradeLogDir    - directory where upgrade log files will be written
+#
+# The script performs the following operations:
+#
+#  1. If -e option is present, the given extent is copied into 
+#     the GemStone 3.2 data directory ($GEMSTONE_DATADIR) and
+#     tranlogs present in the data directory are removed.
+#  2. A stone named $GEMSTONE_NAME is started. If the -C option
+#     is present, the stone is started with the -C option.
+#     The -C option is required if you are upgrading from 2.x.
+#  3. Execute the standard upgradeImage script. If an error
+#     occurs details about the error or errors can found in 
+#     topazerrors.log file.
+#  4. Bootstrap Globals defined by loading the topaz input file
+#     specified by the -b option. 
+#  5. Execute the standard upgradeSeasideImage script to upgrade
+#     ConfigurationOfGLASS to the correct version. If an error
+#     occurs details about the error or errors can found in 
+#     topazerrors.log file.
+#  6. Upgrade your application code by loading the topaz input file
+#     specified by the -a option.
+#
+```
 
 ##Before Upgrading
 
@@ -92,6 +126,34 @@ for both GemStone 2.x (or 3.1.x) and GemStone 3.2 as it is much easier
 to share the common code across multiple platforms, when merging
 isn't required.
 
+##Upgrade Script
+
+**READ THE INSTALL GUIDES for [Linux][1] and [Mac][2]**. 
+
+The [upgrade.sh][3] shell script 
+
+
+
+
+```
+usage: ./upgrade.sh -a <application-topaz-file> -b <bootstrap-topaz-file> [-C][-e <source-extent-path>]
+Parameters:
+    -a <application-topaz-file>
+        REQUIRED. 
+        Path to application load topaz input file. 
+        See topaz/upgradeGLASSApplication.tpz for an example.
+    -b <bootstrap-topaz-file>
+        REQUIRED. 
+        Path to Bootstrap setup topaz input file. 
+        See topaz/upgradeGLASSBootstrap.tpz for an example.
+    -e <source-extent-path>
+        If present, the extent at source-extent-path is copied to 
+        
+    -C
+        If present, the -C flag is passed to the startstone command 
+        indicating an upgrade from GemStone 2.x
+```
+
 [1]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Linux-3.2.pdf
 [2]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Mac-3.2.pdf
-
+[3]: ../../bin/upgrade.sh

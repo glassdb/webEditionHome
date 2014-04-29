@@ -1,4 +1,64 @@
 #! /bin/bash
+#
+# Script driver for Web Edition upgrades. Before using script
+# READ THE Install Guide for your platform.
+#
+# Before running this script the following environment variables
+# must be set:
+#
+#  GEMSTONE         - directory where GemStone resides
+#  GEMSTONE_DATADIR - directory where the extent and tranlogs reside
+#  GEMSTONE_NAME    - name of the stone
+#  upgradeLogDir    - directory where upgrade log files will be written
+#
+# The script performs the following operations:
+#
+#  1. If -e option is present, the given extent is copied into 
+#     the GemStone 3.2 data directory ($GEMSTONE_DATADIR) and
+#     tranlogs present in the data directory are removed.
+#  2. A stone named $GEMSTONE_NAME is started. If the -C option
+#     is present, the stone is started with the -C option.
+#     The -C option is required if you are upgrading from 2.x.
+#  3. Execute the standard upgradeImage script. If an error
+#     occurs details about the error or errors can found in 
+#     topazerrors.log file.
+#  4. Bootstrap Globals defined by loading the topaz input file
+#     specified by the -b option. 
+#  5. Execute the standard upgradeSeasideImage script to upgrade
+#     ConfigurationOfGLASS to the correct version. If an error
+#     occurs details about the error or errors can found in 
+#     topazerrors.log file.
+#  6. Upgrade your application code by loading the topaz input file
+#     specified by the -a option.
+#
+# For more information about using this script, see the "Upgrade to
+# GemStone 3.2 article at:
+#
+#  https://github.com/glassdb/webEditionHome/blob/master/docs/upgrade/upgradeToGemStone3.2.md
+
+if [ "a$GEMSTONE" = "a" ]; then
+  echo "ERROR: This script requires a GEMSTONE environment variable."
+  echo "       Please set it to the directory where GemStone resides."
+  exit 1
+fi
+if [ "a$GEMSTONE_DATADIR" = "a" ]; then
+  echo "ERROR: This script requires a GEMSTONE_DATADIR environment variable."
+  echo "       Please set it to the directory where the extent and tranlogs reside."
+  exit 1
+fi
+if [ "a$GEMSTONE_NAME" = "a" ]; then
+  echo "ERROR: This script requires a GEMSTONE_NAME environment variable."
+  echo "       Please set it to the name of the stone."
+  exit 1
+fi
+if [ "a$upgradeLogDir" = "a" ]; then
+  echo "ERROR: This script requires a upgradeLogDir environment variable."
+  echo "       Please set it to the directory where upgrade log files will"
+  echo "       be written."
+  exit 1
+fi
+
+$upgradeLogDir
 
 usage() {
   cat <<EOF
@@ -21,7 +81,6 @@ Parameters:
 EOF
 }
 
-
 COPYDBF_DOC="  - the extent to be upgraded has been copied to $GEMSTONE_DATADIR by you."
 STARTSTONE_OPTION=""
 
@@ -31,7 +90,7 @@ while getopts "Ca:b:e:" opt; do
     b ) BOOTSTRAP_TPZ=$OPTARG ;;
     e ) 
         EXTENT_NAME=$OPTARG
-        COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR."
+        COPYDBF_DOC="  - copies $EXTENT_NAME to $GEMSTONE_DATADIR and remove old tranlog files."
       ;;
     C ) STARTSTONE_OPTION="-C";;
    \? ) usage; exit 1 ;;
@@ -56,13 +115,11 @@ This script performs a standard upgrade for the stone $GEMSTONE_NAME.
 This script:
 
 $COPYDBF_DOC
-  - removes any old tranlog files in the the $GEMSTONE_DATADIR directory.
   - starts the stone $GEMSTONE_NAME.
   - runs the upgradeImage script.
   - sets up the Bootstrap globals for the upgradeSeasideImage script.
   - runs the upgradeSeasideImage script.
-  - runs an application upgrade script, that you should have customized
-    BEFORE running this script
+  - runs an application upgrade script that loads your application code
 
 If an error occurs during execution of this script, the details of the error are
 available in the topazerrors.log file.
@@ -167,4 +224,3 @@ if [ "$?" != "0" ]; then
 fi
 
 exit 0
-
