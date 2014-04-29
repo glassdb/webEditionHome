@@ -45,12 +45,12 @@ You can take one of two routes:
    saved as the package *MyApplication-Core.v32*. Your configuration baseline
    would look like the following:
 
-```Smalltalk
+   ```Smalltalk
 spec for: #'gemstone' do: [ 
   spec package: 'MyApplication-Core' ].
 spec for: #'gs3.2.x' do: [ 
   spec package: 'MyApplication-Core' with: [ spec file: 'MyApplication-Core.v3']
-```
+   ```
 
 2. Separate the code into a common package, a 2.x package, and a 3.2
    package. The *MyApplication-Core* package would become the common package.
@@ -60,7 +60,7 @@ spec for: #'gs3.2.x' do: [
    *MyApplication-32x-Core*. Your configuration baseline would be
    modified to look like the following:
 
-```Smalltalk
+   ```Smalltalk
 spec for: #'gemstone' do: [ 
   spec package: 'MyApplication-Core' ].
 spec
@@ -79,7 +79,7 @@ spec
         with: [ spec includes: 'MyApplication-32-Core' ];
       package: 'MyApplication-32-Core'
         with: [ spec requires: 'MyApplication-Core' ] ]
-```
+   ```
 
 so that you
 have a *common* package for common code, a 2.x or 3.1.x package for the
