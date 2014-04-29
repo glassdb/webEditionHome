@@ -35,9 +35,8 @@ Install Guides for [Linux][1] and [Mac][2].
 ###Packaging Guidelines
 
 If you find that you do indeed have code changes that are specific to
-GemStone 3.2, then you will need to decide on a re-packaging strategy. 
-
-You can take one of two routes:
+GemStone 3.2, then you will need to decide on a re-packaging strategy. You can 
+take one of two routes:
 
 1. Create a package branch for 3.2, where you simply make the necessary
    changes for 3.2 in-place and then save the Monticello package,
@@ -80,6 +79,18 @@ You can take one of two routes:
          package: 'MyApplication-32-Core'
            with: [ spec requires: 'MyApplication-Core' ] ]
    ``` 
+
+The first approach is appropriate if you will be moving your entire
+development effort to GemStone 3.2 and most if not all code
+modifications will take place in the 3.2 branch. It is relatively easy
+to merge changes from *MyApplication-Core* to *MyApplication-Core.v32*,
+but it is not quite as easy to merge changes from *MyApplication-Core.v32* 
+back to *MyApplication-Core*.
+
+The second approach is appropriate if you intend to continue development
+for both GemStone 2.x (or 3.1.x) and GemStone 3.2 as it is much easier
+to share the common code across multiple platforms, when merging
+isn't required.
 
 [1]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Linux-3.2.pdf
 [2]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Mac-3.2.pdf
