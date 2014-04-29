@@ -46,10 +46,10 @@ You can take one of two routes:
    would look like the following:
 
    ```Smalltalk
-spec for: #'gemstone' do: [ 
-  spec package: 'MyApplication-Core' ].
-spec for: #'gs3.2.x' do: [ 
-  spec package: 'MyApplication-Core' with: [ spec file: 'MyApplication-Core.v3']
+   spec for: #'gemstone' do: [ 
+     spec package: 'MyApplication-Core' ].
+   spec for: #'gs3.2.x' do: [ 
+     spec package: 'MyApplication-Core' with: [ spec file: 'MyApplication-Core.v3']
    ```
 
 2. Separate the code into a common package, a 2.x package, and a 3.2
@@ -61,24 +61,24 @@ spec for: #'gs3.2.x' do: [
    modified to look like the following:
 
    ```Smalltalk
-spec for: #'gemstone' do: [ 
-  spec package: 'MyApplication-Core' ].
-spec
-  for: #'gs2.4.x'
-  do: [ 
-    spec
-      package: 'MyApplication-Core'
-        with: [ spec includes: 'MyApplication-2x-Core' ];
-      package: 'MyApplication-2x-Core'
-        with: [ spec requires: 'MyApplication-Core' ] ].
-spec
-  for: #'gs3.2.x'
-  do: [ 
-    spec
-      package: 'MyApplication-Core'
-        with: [ spec includes: 'MyApplication-32-Core' ];
-      package: 'MyApplication-32-Core'
-        with: [ spec requires: 'MyApplication-Core' ] ]
+   spec for: #'gemstone' do: [ 
+     spec package: 'MyApplication-Core' ].
+   spec
+     for: #'gs2.4.x'
+     do: [ 
+       spec
+         package: 'MyApplication-Core'
+           with: [ spec includes: 'MyApplication-2x-Core' ];
+         package: 'MyApplication-2x-Core'
+           with: [ spec requires: 'MyApplication-Core' ] ].
+   spec
+     for: #'gs3.2.x'
+     do: [ 
+       spec
+         package: 'MyApplication-Core'
+           with: [ spec includes: 'MyApplication-32-Core' ];
+         package: 'MyApplication-32-Core'
+           with: [ spec requires: 'MyApplication-Core' ] ]
    ``` 
 
 [1]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Linux-3.2.pdf
