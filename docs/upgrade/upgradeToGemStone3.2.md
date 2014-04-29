@@ -130,15 +130,17 @@ isn't required.
 
 **READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
 
-1. [Copy extent and remove tranlog files](#copy-extent-and-remove-tranlog-files)
-2. [Start stone]
-3. [Run *upgradeImage* script]
-4. [Execute *bootstrap-globals* topaz file]
-5. [Run *upgradeSeasideImage* script]
-6. [Execute *application-load* topaz file]
+The [upgrade.sh script][3]
 
+1. [Copy extent and remove tranlog files](#copy-extent-and-remove-tranlog-files)
+2. [Start stone](#start-stone)
+3. [Run *upgradeImage* script](#run-upgradeimage-script)
+4. [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file)
+5. [Run *upgradeSeasideImage* script](#run-upgradeseasideimage-script)
+6. [Execute *application-load* topaz file](#execute-application-load-topaz-file)
 
 ### Copy extent and remove tranlog files
+This step is part of the script mainly as a convenenience during 
 ### Start stone
 ### Run *upgradeImage* script
 ### Execute *bootstrap-globals* topaz file
