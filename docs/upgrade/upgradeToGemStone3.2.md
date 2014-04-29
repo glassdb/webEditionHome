@@ -130,7 +130,7 @@ isn't required.
 
 **READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
 
-1. [Copy extent and remove tranlog files]
+1. [Copy extent and remove tranlog files](#copy-extent-and-remove-tranlog-files)
 2. [Start stone]
 3. [Run *upgradeImage* script]
 4. [Execute *bootstrap-globals* topaz file]
