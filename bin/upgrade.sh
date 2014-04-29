@@ -109,7 +109,14 @@ if [ "a$BOOTSTRAP_TPZ" = "a" ]; then
   exit 1
 fi
 
-cat <<EOF
+$GEMSTONE/bin/waitstone $GEMSTONE_NAME -1
+if [ "$?" = "0" ]; then
+  echo "The stone $GEMSTONE_NAME is currently running. It should be"
+  echo "shutdown before running this script"
+  exit 1
+fi
+  
+  cat <<EOF
 
 This script performs a standard upgrade for the stone $GEMSTONE_NAME.
 This script:
@@ -140,6 +147,14 @@ echo "STARTING upgrade stone $GEMSTONE_NAME"
 $GEMSTONE/bin/startstone $STARTSTONE_OPTION $GEMSTONE_NAME
 if [ "$?" != "0" ]; then
   echo "ERROR: starting upgrade stone"
+  exit 1
+fi
+
+$GEMSTONE/bin/waitstone $GEMSTONE_NAME 1
+if [ "$?" != "0" ]; then
+  echo "The stone $GEMSTONE_NAME has not started after waiting 1 minutes."
+  echo "Please look at the stone log file to see what is going on."
+  echo "It may be necessary to increase the timout."
   exit 1
 fi
 

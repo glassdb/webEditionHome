@@ -2,7 +2,7 @@
 
 ---
 
-**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2] FIRST**. 
 
 ---
 
@@ -59,7 +59,7 @@ for creating a custom upgrade script for your application:
 
 ---
 
-**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2] FIRST**. 
 
 ---
 
@@ -140,24 +140,73 @@ isn't required.
 
 ---
 
-**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2]**. 
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2] FIRST**. 
 
 ---
 
-The [upgrade.sh script][3]
+The [upgrade.sh script][3] automates the 6 main steps of the GemStone
+upgrade process:
 
-1. [Copy extent and remove tranlog files](#copy-extent-and-remove-tranlog-files)
+1. [Copy extent and remove tranlog files [**OPTIONAL**]](#copy-extent-and-remove-tranlog-files)
 2. [Start stone](#start-stone)
 3. [Run *upgradeImage* script](#run-upgradeimage-script)
 4. [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file)
 5. [Run *upgradeSeasideImage* script](#run-upgradeseasideimage-script)
 6. [Execute *application-load* topaz file](#execute-application-load-topaz-file)
 
+The script is provided as a template that you can customize to fit your
+upgrade process requirements.
+
+Before running this script, you should have [installed GemStone
+3.2](../install/gettingStartedWithWebEdition.md) and use the
+[defWebEdition source script](../../bin/defWebEdition) to define the
+standard environment variables for the Web Edition.
+
+In addition to the environment variables defined by *defWebEdition*, you
+need to define the upgrade specific environment variable
+**upgradeLogDir** that specifies the directory where the upgrade log
+files will be located.
+
+Finally the GemStone 3.2 stone should not be running when this script is
+started.
+
+
 ---
 
 ### Copy extent and remove tranlog files
-This step is part of the script mainly as a convenenience during 
+The first step of the upgrade process is to copy the source extent file
+(from GemStone 2.4.x or GemStone 3.1) into the $GEMSTONE_DATADIR and
+make sure that there are no tranlog files left over from previous runs.
+
+The location of the source extent is specified by the `-e` option:
+
+```Shell
+$WE_HOME/bin/upgrade.sh -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf
+```
+
+If you are copying the extent from the data dir of an old stone (as
+above), make sure that the stone has been shut down cleanly.
+
+If you omit the `-e` option when running the script no extent copy will
+be performed and you are responsible for making sure that the proper
+extent is present in the $GEMSTONE_DATADIR.
+
 ### Start stone
+Once the source extent is in place, this script starts the stone using
+the stone name specified by the $GEMSTONE_NAME environment variable. The
+stone is started with the following command:
+
+```Shell
+$GEMSTONE/bin/startstone $GEMSTONE_NAME
+```
+
+If the the `-C` option is present (specifying that the source extent is
+from GemStone 2.4.x), then the stone is started as follows:
+
+```Shell
+$GEMSTONE/bin/startstone -C $GEMSTONE_NAME
+```
+
 ### Run *upgradeImage* script
 ### Execute *bootstrap-globals* topaz file
 ### Run *upgradeSeasideImage* script
