@@ -21,20 +21,11 @@ GsDeployer
       baseline: project;
       repository: repository;
       get.
-    [
     Metacello new
       baseline: project;
       repository: repository;
       onConflict: [ :ex | ex allow ];
       load: loads 
-         ] on: MCPerformPostloadNotification do: [:ex |
-           (skipInit includes: ex postloadClass theNonMetaClass name)
-             ifTrue: [ 
-               "perform initialization"
-               ex resume: true ]
-             ifFalse: [
-               GsFile gciLogServer: '  Skip ', ex postloadClass name asString, ' initialization.'.
-                ex resume: false ] ] 
      ]  on: Warning do: [:ex |
            Transcript
               cr;
