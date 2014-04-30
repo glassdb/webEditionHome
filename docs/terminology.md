@@ -12,7 +12,7 @@ early documentation were created with Seaside in the name.
 
 Around the same time, in the very early days, GLASS was invented as an acronym 
 standing for <b>G</b>emstone, <b>L</b>inux, <b>A</b>pache, <b>S</b>easide, <b>S</b>malltalk 
-and GLASS was then used in more documentation.
+and <b>G</b>LASS was then used in more documentation.
 
 After a couple of years it became obvious that it wasn't practical to ship 
 Seaside pre-installed in the GemStone product tree (in 
