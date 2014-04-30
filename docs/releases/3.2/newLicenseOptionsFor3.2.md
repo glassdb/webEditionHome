@@ -1,5 +1,5 @@
 ##New Web Edition License Terms for 3.2
-With the release of [GemStone 3.2](gemstone3.2release.md), GemTalk Systems is announcing a 
+With the release of [GemStone 3.2](gemstone3.2release.md), [GemTalk Systems][6] is announcing a 
 [new pricing structure for the GemStone/S 64 Web Edition][1] ([FAQ][2]).
 
 [In February, I sent mail to the GLASS community][3] where we announced our intention to 
@@ -41,3 +41,4 @@ please mail your questions to the [GLASS mailing list][5] or to the sales email 
 [3]: http://forum.world.st/Glass-Changes-to-terms-of-Free-for-Commercial-Use-license-for-3-2-and-beyond-tp4746053.html
 [4]: http://gemtalksystems.com/index.php/community/gss-support/overview/
 [5]: http://lists.gemtalksystems.com/mailman/listinfo/glass
+[6]: http://gemtalksystems.com/
