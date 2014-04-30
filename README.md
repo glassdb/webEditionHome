@@ -5,7 +5,7 @@
 
 Over time documentation will be updated and 
 consolidated into this location from the [Google glassdb project][1], the 
-[(gem)Stone Soup blog][2], and other sources.
+[(gem)Stone Soup blog][2], [Programming Gems (on GemStone)][8], and other sources.
 
 **Web Edition Home** is not a replacement or substitute for standard [GemStone/S 64 
 documentation][6]. **Web Edition Home** provides supplemental material for working
@@ -32,3 +32,4 @@ documentation.
 [4]: https://github.com/glassdb/webEditionHome
 [6]: http://gemtalksystems.com/index.php/community/gss-support/documentation/gs64/
 [7]: http://gemtalksystems.com/index.php/products/glass-seaside/
+[8]: http://programminggems.wordpress.com/
