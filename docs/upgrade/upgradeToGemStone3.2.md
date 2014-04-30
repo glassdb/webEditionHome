@@ -76,7 +76,7 @@ and you should pay special attention to the section entitled
 *Prior to Upgrade in existing application* in **Chapter 3** of the
 Install Guides for [Linux][1] and [Mac][2].
 
-###Packag Naming Guidelines
+###Package Naming Guidelines
 
 If you find that you do indeed have code changes that are specific to
 GemStone 3.2, then you will need to decide on a re-packaging strategy. You can 
@@ -291,10 +291,54 @@ own *bootstrap-globals* file.
 
 ## Upgrade Error Diagnostics
 
-### Application Load Error
+### Common *upgradeImage* Errors
+If an error occurs while running *upgradeImage*
+it will more than likely require help from GemStone engineers to
+diagnose the problem. 
 
-For example, The
-*topazerrors.log* file contains lines like the following:
+Gather up the log files and package them in an email to the [GLASS mailing
+list][5].
+
+### Common *upgradeSeasideImage* Errors
+The most common *upgradeSeasideImage* occurs when an mcz file is not
+found in the **BootstrapRepositoryDirectory** (`$GEMSTONE/seaside/monticello/repository` by default):
+
+```
+GemStone: Error         Nonfatal
+/export/foos2/users/dhenrich/3.0/n_gss64bit/fast50/gs/product/seaside/monticello/repository/Squeak.v32-dkh.300.mcz
+Error Category: 231169 [GemStone] Number: 2023  Arg Count: 2 Context : 161248001 exception : 160875777
+Arg 1: [160875521 sz:2 cls: 154832129 FSReference] /export/foos2/users/dhenrich/3.0/n_gss64bit/fast50/gs/product/seaside/monticello/repository/Squeak.v32-dkh.300.mcz
+Arg 2: [20 sz:0 cls: 76289 UndefinedObject] nil
+ERROR: UNEXPECTED ERROR
+```
+
+or
+
+```
+--transcript--'Fetched -> OmniBrowser-DaleHenrichs.447 --- foos:/export/foos2/users/dhenrich/3.0/n_gss64bit/fast50/gs/product/seaside/monticello/repository --- foos:/export/foos2/users/dhenrich/3.0/n_gss64bit/fast50/gs/product/seaside/monticello/repository'
+--transcript--'...RETRY->OB-GemStone-Platform-dkh.69'
+--transcript--'...RETRY->OB-GemStone-Platform-dkh.69'
+--transcript--'...FAILED->OB-GemStone-Platform-dkh.69'
+ -----------------------------------------------------
+GemStone: Error         Nonfatal
+a MetacelloPackageSpecResolutionError occurred (error 2710)
+Error Category: 231169 [GemStone] Number: 2710  Arg Count: 4 Context : 161242113 exception : 176269057
+Arg 1: [176269313 sz:12 cls: 113161729 MetacelloPackageSpec] aMetacelloPackageSpec
+Arg 2: [176269569 sz:2 cls: 66817 Array] anArray
+Arg 3: [20 sz:0 cls: 76289 UndefinedObject] nil
+Arg 4: [20 sz:0 cls: 76289 UndefinedObject] nil
+ERROR: UNEXPECTED ERROR
+```
+
+The best way to resolve the error is to find a copy of the missing mcz
+file (*Squeak.v32-dkh.300.mcz* or OB-GemStone-Platform-dkh.69) and copy it into the **BootstrapRepositoryDirectory**. If you are
+using the default location, you will need to make the directory
+writable.
+
+### Interpretting *topazerrors.log* files
+If an error occurs while running a topaz script, a *topazerrors.log* is
+created containing pointers to the line number of path to the topaz log
+file. Here's an example *topazerrors.log* file:
 
 ```
 near line 110 of file /export/foos2/users/dhenrich/3.0/n_gss64bit/upgrades/upgradeDir/topazApplication_1.out, ERROR: UNEXPECTED ERROR
@@ -302,64 +346,65 @@ topaz> time
  04/23/2014 14:10:46.634 PDT
 ```
 
-that reference an error at a particular line number in the given file.
-Here's the chunk of the file referenced in the last error:
+It is worth noting that for the topaz upgrade scripts uses both the
+`stk` and `stack` arguments for the `iferr` command:
 
 ```
---transcript--'Warning: This package depends on the following classes:
-  BaselineOf
-You must resolve these dependencies before you will be able to load these definitions:
-  BaselineOfMetacello
-  BaselineOfMetacello>>baseline:
-  BaselineOfMetacello>>gemstone10beta311PostLoadDoIt
-  BaselineOfMetacello>>reprimeRegistryIssue197
-  BaselineOfMetacello>>testResourcePostLoadDoIt
-'
---transcript--'Loaded -> BaselineOfMetacello-ChristopheDemarey.68 --- filetree:///opt/git/metacello-work/repository --- filetree:///opt/git/metacello-work/repository'
------------------------------------------------------
-GemStone: Error         Nonfatal
-a MessageNotUnderstood occurred (error 2010), a UndefinedObject does not understand  #'project'
-Error Category: 231169 [GemStone] Number: 2010  Arg Count: 4 Context : 299651585 exception : 246793217
-Arg 1: [19544065 sz:7 cls: 110849 Symbol] project
-Arg 2: [2 sz:0 cls: 74241 SmallInteger] 0 == 0x0
-Arg 3: [20 sz:0 cls: 76289 UndefinedObject] nil
-Arg 4: [246792961 sz:0 cls: 66817 Array] anArray
-ERROR: UNEXPECTED ERROR
-topaz> time
- 04/23/2014 14:10:46.634 PDT
-topaz > exec iferr 1 : stk
+iferr 1 stk
+iferr 2 stack
+```
+
+The `stk` argument means that the stack trace is dumped to the log file
+with a single line per frame (i.e., no argument or temp values) like the
+following:
+
+```
+ ==> 1 MessageNotUnderstood >> defaultAction         @2 line 3   [methId 212055297]
+ 2 MessageNotUnderstood (AbstractException) >> _signalWith: @5 line 25   [methId 21212    0321]
+ 3 MessageNotUnderstood (AbstractException) >> signal @2 line 47   [methId 212123905]
+ 4 UndefinedObject (Object) >> doesNotUnderstand: @9 line 10   [methId 168907521]
+ 5 UndefinedObject (Object) >> _doesNotUnderstand:args:envId:reason: @7 line 12   [met    hId 168899073]
+ 6 [] in  ExecBlock0 (MetacelloScriptEngine) >> get @13 line 12   [methId 241598209]
+ ...
+```
+
+The second `stack` argument means that after the `stk` display, a second
+listing of the stack is dumped to the log file that includes arguments
+and temp values:
+
+```
 ==> 1 MessageNotUnderstood >> defaultAction         @2 line 3   [methId 212055297]
+    receiver [246793217 sz:13 cls: 131073 MessageNotUnderstood] a MessageNotUnderstood occurred (error 2010), a UndefinedObject does not understand  #'project'
+    result [20 sz:0 cls: 76289 UndefinedObject] nil 
+(skipped 1 evaluationTemps)
 2 MessageNotUnderstood (AbstractException) >> _signalWith: @5 line 25   [methId 212120321]
+    receiver [246793217 sz:13 cls: 131073 MessageNotUnderstood] a MessageNotUnderstood occurred (error 2010), a UndefinedObject does not understand  #'project'
+    inCextensionArg [20 sz:0 cls: 76289 UndefinedObject] nil 
+    res [20 sz:0 cls: 76289 UndefinedObject] nil 
+(skipped 1 evaluationTemps)
 3 MessageNotUnderstood (AbstractException) >> signal @2 line 47   [methId 212123905]
+    receiver [246793217 sz:13 cls: 131073 MessageNotUnderstood] a MessageNotUnderstood occurred (error 2010), a UndefinedObject does not understand  #'project'
 4 UndefinedObject (Object) >> doesNotUnderstand: @9 line 10   [methId 168907521]
+    receiver [20 sz:0 cls: 76289 UndefinedObject] nil 
+    aMessageDescriptor [245338369 sz:2 cls: 66817 Array] anArray
+    args [246792961 sz:0 cls: 66817 Array] anArray
+    sel [19544065 sz:7 cls: 110849 Symbol] project
+    ex [246793217 sz:13 cls: 131073 MessageNotUnderstood] a MessageNotUnderstood occurred (error 2010), a UndefinedObject does not understand  #'project'
+(skipped 3 evaluationTemps)
 5 UndefinedObject (Object) >> _doesNotUnderstand:args:envId:reason: @7 line 12   [methId 168899073]
+    receiver [20 sz:0 cls: 76289 UndefinedObject] nil 
+    aSymbol [19544065 sz:7 cls: 110849 Symbol] project
+    anArray [246792961 sz:0 cls: 66817 Array] anArray
+    aSmallInt [2 sz:0 cls: 74241 SmallInteger] 0 == 0x0 
+    dnuKind [2 sz:0 cls: 74241 SmallInteger] 0 == 0x0 
 6 [] in  ExecBlock0 (MetacelloScriptEngine) >> get @13 line 12   [methId 241598209]
-7 ExecBlock0 (ExecBlock) >> ensure:             @2 line 12   [methId 210496001]
-8 MetacelloProjectRegistration class >> copyRegistryRestoreOnErrorWhile: @8 line 14   [me
-thId 234215169]
-9 MetacelloScriptEngine >> get                  @2 line 6   [methId 234177537]
-10 [] in  ExecBlock1 (MetacelloScriptExecutor) >> execute: @11 line 12   [methId 241584129]
-11 [] in  ExecBlock1 (MetacelloScriptApiExecutor) >> executeString:do: @5 line 4   [methId 241436417]
-12 Array (Collection) >> do:                     @5 line 10   [methId 210610433]
-13 MetacelloScriptApiExecutor >> executeString:do: @5 line 4   [methId 235000833]
-14 Unicode7 (String) >> execute:against:         @2 line 2   [methId 242037505]
-15 MetacelloScriptApiExecutor (MetacelloScriptExecutor) >> execute: @6 line 6   [methId 234164993]
-16 Metacello >> execute                          @6 line 5   [methId 234410241]
-17 Metacello >> get                              @3 line 5   [methId 234409729]
-18 [] in  Executed Code                          @5 line 22   [methId 246608129]
-19 ExecBlock0 (ExecBlock) >> on:do:              @3 line 42   [methId 210482433]
-20 [] in  Executed Code                          @10 line 37   [methId 246504449]
-21 Array (Collection) >> do:                     @5 line 10   [methId 210610433]
-22 [] in  Executed Code                          @2 line 12   [methId 246500353]
-23 [] in  ExecBlock0 (GsDeployer) >> deploy:     @8 line 8   [methId 243635969]
-24 ExecBlock0 (ExecBlock) >> on:do:              @3 line 42   [methId 210482433]
-25 [] in  ExecBlock0 (GsDeployer) >> deploy:     @2 line 9   [methId 240842753]
-26 [] in  ExecBlock0 (MCPlatformSupport class) >> commitOnAlmostOutOfMemoryDuring: @3 line 7   [methId 241037057]
-27 ExecBlock0 (ExecBlock) >> ensure:             @2 line 12   [methId 210496001]
+    self [246720769 sz:3 cls: 28447233 MetacelloScriptEngine] aMetacelloScriptEngine
+    receiver [246724097 sz:5 cls: 127745 ExecBlock0] anExecBlock0
+    projectPackage [245259265 sz:12 cls: 20362241 MetacelloPackageSpec] aMetacelloPackageSpec
+    spec [245255937 sz:13 cls: 28469249 MetacelloMCBaselineOfProjectSpec] aMetacelloMCBaselineOfProjectSpec
+    self [246720769 sz:3 cls: 28447233 MetacelloScriptEngine] aMetacelloScriptEngine
+    _VC [245274881 sz:5 cls: 134913 VariableContext] aVariableContext
 ```
-
-From this information, you should be able to deduce the problem. In the
-above case, the class **BaselineOf** was missing from the repository.
 
 
 [1]: http://downloads.gemtalksystems.com/docs/GemStone64/3.2.x/GS64-InstallGuide-Linux-3.2.pdf
