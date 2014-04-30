@@ -331,7 +331,8 @@ ERROR: UNEXPECTED ERROR
 ```
 
 The best way to resolve the error is to find a copy of the missing mcz
-file (*Squeak.v32-dkh.300.mcz* or OB-GemStone-Platform-dkh.69) and copy it into the **BootstrapRepositoryDirectory**. If you are
+file (*Squeak.v32-dkh.300.mcz* or *OB-GemStone-Platform-dkh.69*) and copy it into 
+the **BootstrapRepositoryDirectory**. If you are
 using the default location, you will need to make the directory
 writable.
 
