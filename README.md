@@ -14,6 +14,7 @@ with the [GemTalk's Web Edition for GemStone/S 64 Bit][7].
 ## Topics
 1. [Web Edition License Options](http://seaside.gemtalksystems.com/docs/GLASS-Pricing-1201.htm) and [FAQ](http://seaside.gemtalksystems.com/docs/Web_Edition_FAQ.htm)
 1. [Getting Started with the Web Edition](docs/install/gettingStartedWithWebEdition.md)
+2. [GemTalk Systems Resources](docs/gemtalksystems_resources.md)
 2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
 3. [GLASS, Seaside, Web Edition terminology](docs/terminology.md)
 4. [Install Seaside3.1.0](docs/install/installSeaside3.1.md)

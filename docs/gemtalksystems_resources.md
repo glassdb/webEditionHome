@@ -1,14 +1,14 @@
-#GemTalk Systems GemStone/S 64 Resources
+#GemTalk Systems Resources
 
-Useful links to resources on the main [GemTalk Systems site][8]:
+Useful links to GemStone/S 64 resources on the main [GemTalk Systems site][8]:
 
-1. [GemStone/S 64 Release History][1]
-2. [GemStone/S 64 Documentatino][2]
-3. [GemStone/S 64 Downloads][3]
-4. [GemStone/S 64 Ftp Downloads][4]
-5. [GemStone/S 64 BugNotes][5]
-6. [GemStone/S 64 Supported Platforms][6]
-7. [GemStone/S 64 Tech Tips][7]
+1. [Release History][1]
+2. [Documentatino][2]
+3. [Downloads][3]
+4. [Ftp Downloads][4]
+5. [BugNotes][5]
+6. [Supported Platforms][6]
+7. [Tech Tips][7]
 8. [Visual Stat Display (VSD)][9]
 
 [1]: http://gemtalksystems.com/index.php/community/gss-support/documentation/gs64/release-history/
