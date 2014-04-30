@@ -5,7 +5,9 @@ With the release of [GemStone 3.2](gemstone3.2release.md), GemTalk Systems is an
 [In February, I sent mail to the GLASS community][3] where we announced our intention to 
 change the license agreement:
 
-> For the GemStone 3.2 release and beyond  we are considering tweaking the terms of the Free for Commercial Use license. For reference, the current terms are available here[1]. 
+> For the GemStone 3.2 release and beyond  we are considering tweaking the terms of the Free for Commercial Use license.
+>
+> ...
 > 
 > No changes will be made to the current terms of 2.x, 3.0.x, or 3.1.x Free for Commercial Use licenses. I repeat, no changes to license terms for 3.1.x and earlier!
 >
