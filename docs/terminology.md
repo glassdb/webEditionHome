@@ -11,7 +11,7 @@ use Seaside to describe the product and many of the product artifects and
 early documentation were created with Seaside in the name.
 
 Around the same time, in the very early days, GLASS was invented as an acronym 
-standing for **G**emstone, **L**inux, **A**pache, **S**easide, **S**malltalk 
+standing for <b>G</b>emstone, <b>L</b>inux, <b>A</b>pache, <b>S</b>easide, <b>S</b>malltalk 
 and GLASS was then used in more documentation.
 
 After a couple of years it became obvious that it wasn't practical to ship 
