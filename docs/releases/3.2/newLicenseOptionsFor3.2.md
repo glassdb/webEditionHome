@@ -32,7 +32,12 @@ In a nutshell the changes in terms can be boiled down to four major areas:
    **Extended Full**. The new licenses provide options for increasing the size of the SPC to 4G and/or
    increasing the number of CPUS to 4. Limited [technical support][4] is also provided.
 
+If you have any questions, please look at the [FAQ][2] first. If your question isn't answered there, then
+please mail your questions to the [GLASS mailing list][5] or to the sales email address listed on the 
+[license page][1].
+
 [1]: http://seaside.gemtalksystems.com/docs/WebEditionPricing.htm
 [2]: http://seaside.gemtalksystems.com/docs/Web_Edition_FAQ.htm
 [3]: http://forum.world.st/Glass-Changes-to-terms-of-Free-for-Commercial-Use-license-for-3-2-and-beyond-tp4746053.html
 [4]: http://gemtalksystems.com/index.php/community/gss-support/overview/
+[5]: http://lists.gemtalksystems.com/mailman/listinfo/glass
