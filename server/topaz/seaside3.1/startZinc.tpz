@@ -1,0 +1,11 @@
+run
+| port adaptor |
+port := 8383.
+Transcript
+  cr;
+  show: 'Starting Zinc adaptor'.
+WAServerAdaptor default
+  ifNotNil: [ :ignored | WAServerAdaptor startOn: port ]
+  ifNil: [ 
+    adaptor := WAGsZincAdaptor port: port.
+    adaptor start ] 
