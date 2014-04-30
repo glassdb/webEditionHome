@@ -12,7 +12,9 @@ documentation][6]. **Web Edition Home** provides supplemental material for worki
 with the [GemTalk's Web Edition for GemStone/S 64 Bit][7].
 
 ## Topics
-1. [Web Edition License Options](http://seaside.gemtalksystems.com/docs/GLASS-Pricing-1201.htm) and [FAQ](http://seaside.gemtalksystems.com/docs/Web_Edition_FAQ.htm)
+1. [Web Edition License Options](http://seaside.gemtalksystems.com/docs/GLASS-Pricing-1201.htm),
+   [FAQ](http://seaside.gemtalksystems.com/docs/Web_Edition_FAQ.htm) and 
+   [announcement](docs/releases/3.2/newLicenseOptionsFor3.2.md)
 1. [Getting Started with the Web Edition](docs/install/gettingStartedWithWebEdition.md)
 2. [GemTalk Systems Resources](docs/gemtalksystems_resources.md)
 2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
