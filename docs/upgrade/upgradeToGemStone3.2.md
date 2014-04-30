@@ -76,7 +76,7 @@ and you should pay special attention to the section entitled
 *Prior to Upgrade in existing application* in **Chapter 3** of the
 Install Guides for [Linux][1] and [Mac][2].
 
-###Packaging Guidelines
+###Packag Naming Guidelines
 
 If you find that you do indeed have code changes that are specific to
 GemStone 3.2, then you will need to decide on a re-packaging strategy. You can 
