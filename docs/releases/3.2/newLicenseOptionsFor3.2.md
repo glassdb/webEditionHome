@@ -24,7 +24,7 @@ In a nutshell the changes in terms can be boiled down to four major areas:
    vendors, while allowing commercial use.
 2. A subscription **Limited** license is avaialable via email. The license is still more restricted than 
    the old license, but the restrictions are pretty generous and in accord with our intentions for
-   what we consider fair "Free for Commercial Use* terms.
+   what we consider fair *Free for Commercial Use* terms.
 3. A subscription **Full** license is available for purchase ($1500/yr). The **Full** license is
    equivalent to the older *Free for Commercial Use* license. The **Full** license also provides for 
    limited [technical support][4] (5 tickets).
