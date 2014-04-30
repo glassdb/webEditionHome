@@ -288,6 +288,11 @@ own *bootstrap-globals* file.
 
 ### Run *upgradeSeasideImage* script
 ### Execute *application-load* topaz file
+
+## Upgrade Error Diagnostics
+
+### Application Load Error
+
 For example, The
 *topazerrors.log* file contains lines like the following:
 
