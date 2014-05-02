@@ -35,3 +35,4 @@ here are some posts that support that recommendation:
 [Nginx](http://nginx.org/en/):
 
 * [GemStone with Nginx](https://web.archive.org/web/20101008033233/http://www.hyperbomb.com/2009/02/01/gemstone-with-nginx)
+* [Using FastCGI with Nginx and Seaside](http://www.monkeysnatchbanana.com/posts/2010/08/17/using-fastcgi-with-nginx-and-seaside.html)
