@@ -13,7 +13,7 @@ Here's a blog post in favor of using Swazoo:
 
 In addition all of the scaling tests that I have done for Seaside have been performed running a combination of [ lighttpd](http://www.lighttpd.net/)
 and [FastCGI](http://www.fastcgi.com/):
-*  GLASS: A Share Everything Architecture for Seaside – ESUG 2008](http://gemstonesoup.wordpress.com/2009/10/18/glass-a-share-everything-architecture-for-seaside-esug-2008/)
+* [GLASS: A Share Everything Architecture for Seaside – ESUG 2008](http://gemstonesoup.wordpress.com/2009/10/18/glass-a-share-everything-architecture-for-seaside-esug-2008/)
 * [Scaling Seaside with GemStone/S](http://gemstonesoup.wordpress.com/2007/10/19/scaling-seaside-with-gemstones/)
 
 #Apache, Lighttpd and Nginx
