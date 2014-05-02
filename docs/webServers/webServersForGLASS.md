@@ -1,4 +1,4 @@
-#WebServers for WebEdition
+#Web Servers for Web Edition
 
 ##Swazoo
 The http://www.swazoo.org/ Swazoo2 web adaptor is currently available for Seaside3.0.
