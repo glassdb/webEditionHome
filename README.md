@@ -20,6 +20,7 @@ with the [GemTalk's Web Edition for GemStone/S 64 Bit][7].
 2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
 3. [GLASS, Seaside, Web Edition terminology](docs/terminology.md)
 4. [Install Seaside3.1.0](docs/install/installSeaside3.1.md)
+5. [Web Servers for Web Edition](docs/webServers/webServersForGLASS.md)
 
 ## License
 The material in the **Web Edition Home** project is licensed under the 
