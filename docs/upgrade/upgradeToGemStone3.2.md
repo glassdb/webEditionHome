@@ -19,7 +19,7 @@
    * [2. Start stone](#2-start-stone)
    * [3. Run *upgradeImage* script](#3-run-upgradeimage-script)
    * [4. Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file)
-   * [5. Run *upgradeSeasideImage* script](#5-run-upgradeSeasideimage-script)
+   * [5. Run *upgradeSeasideImage* script](#5-run-upgradeseasideimage-script)
    * [6. Execute *application-load* topaz file](#6-execute-application-load-topaz-file)
 
 4. [Upgrade Error Diagnostics](#upgrade-error-diagnostics)
