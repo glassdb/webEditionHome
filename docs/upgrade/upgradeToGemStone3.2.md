@@ -10,15 +10,21 @@ To perform a GemStone/S Web Edition upgrade, you need to accomplish
 three things:
 
 1. Install the GemStone/S Core code base for GemStone 3.2, which may include new
-   methods and classes. **This step is done automatically and requires no customization**.
+   methods and classes. 
+
+   **This step is done automatically and requires no customization**.
 2. Install the GLASS code base for GemStone 3.2, which may include different sets of
-   packages. **You must supply a path to the bootstrap globals file**. The example file 
-   $WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz will work unless you 
+   packages. 
+
+   **You must supply a path to the bootstrap globals file**. The example file 
+   *$WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz* will work unless you 
    are using a later version of GLASS. See the 
    [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file) section 
    for details.
 3. Install your own application code, which may need to be
-   different for GemStone 3.2. **You must supply a path to the topaz application load script**.
+   different for GemStone 3.2. 
+
+   **You must supply a path to the topaz application load script**.
    You must adapt your own load script for use as part of the upgrade process. See the
    [Execute *application-load* topaz file](#execute-application-load-topaz-file) section
    for details.
