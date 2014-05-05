@@ -17,6 +17,11 @@ three things:
 1. Install the GemStone/S Core code base for GemStone 3.2, which may include new
    methods and classes. 
 
+>  Covers the operations starting with **step 5.** of the *Prepare for Upgrade* section through **step 2.** of the 
+> *Perform the Upgrade* section
+>  in **Chapter 2. Upgrading from previous GemStone/S 64 Bit 3.x versions** or 
+>  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the Install guides
+
    **This step is done automatically as part of the script and requires no customization**.
 2. Install the GLASS code base for GemStone 3.2, which may include different sets of
    packages. 
@@ -250,8 +255,7 @@ run
 ```
 
 The above is the absolute minimum needed to correctly bootstrap GLASS
-into an upgraded repository.
-
+into an upgraded repository. 
 
 The location of the *bootstrap-globals* file is specified by the `-b` option:
 
@@ -261,11 +265,9 @@ $WE_HOME/bin/upgrade.sh -C -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf
                         -b $WE_HOME/bin/upgrade/bootstrapConfigurationOf
 ```
 
-In the event that you want to follow the original formula of upgrading
-using the full range of **Bootstrap Globals**, then you can create and substitute your 
-own *bootstrap-globals* file. 
-
 ### 5. Run *upgradeSeasideImage* script
+Once the *bootstrap-globals* script has been executed, the 
+
 ### 6. Execute *application-load* topaz file
 
 ## Upgrade Error Diagnostics
