@@ -10,9 +10,13 @@ To perform a GemStone/S Web Edition upgrade, you need to accomplish
 three things:
 
 1. Install the GemStone/S Core code base for GemStone 3.2, which may include new
-   methods and classes.
+   methods and classes. *This step is done automatically and requires no customization*.
 2. Install the GLASS code base for GemStone 3.2, which may include different sets of
-   packages.
+   packages. You must supply a path to the bootstrap file. The example file 
+   $WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz will work, unless you 
+   using a later version of GLASS. See the 
+   [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file) section 
+   for details.
 3. Install your own application code, which may need to be
    different for GemStone 3.2.
 
@@ -173,7 +177,7 @@ started.
 
 ---
 
-### Copy extent and remove tranlog files
+### 1. Copy extent and remove tranlog files
 The first step of the upgrade process is to copy the source extent file
 (from GemStone 2.4.x or GemStone 3.1) into the $GEMSTONE_DATADIR and
 make sure that there are no tranlog files left over from previous runs.
@@ -193,7 +197,7 @@ If you omit the `-e` option when running the script no extent copy will
 be performed and you are responsible for making sure that the proper
 extent is present in the $GEMSTONE_DATADIR.
 
-### Start stone
+### 2. Start stone
 Once the source extent is in place, the script starts the stone using
 the stone name specified by the $GEMSTONE_NAME environment variable. The
 stone is started with the following command:
@@ -212,7 +216,7 @@ $GEMSTONE/bin/startstone -C $GEMSTONE_NAME
 After the stone is started, the script waits 5 minutes for the stone to
 be ready for logins.
 
-### Run *upgradeImage* script
+### 3. Run *upgradeImage* script
 Once the stone has been started, the script runs *upgradeImage*
 using the following command:
 
@@ -222,7 +226,7 @@ $GEMSTONE/bin/upgradeImage -s $GEMSTONE_NAME
 If there are errors during the exectuion of the script, 
 the *topazerrors.log* file contains pointers to the error conditions. 
 
-### Execute *bootstrap-globals* topaz file
+### 4. Execute *bootstrap-globals* topaz file
 
 As described in the *Configure Seaside Upgrade* section of the 
 **Installation Guides for [Linux][1] or [Mac][2]** there are a number of
@@ -286,8 +290,8 @@ In the event that you want to follow the original formula of upgrading
 using the full range of **Bootstrap Globals**, then you can create and substitute your 
 own *bootstrap-globals* file. 
 
-### Run *upgradeSeasideImage* script
-### Execute *application-load* topaz file
+### 5. Run *upgradeSeasideImage* script
+### 6. Execute *application-load* topaz file
 
 ## Upgrade Error Diagnostics
 
