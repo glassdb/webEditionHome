@@ -29,7 +29,9 @@ three things:
    > Covers the operations in the **Configure Seaside Upgrade** section in 
    > **Chapter 4. Upgrading Seaside/GLASS Applications** of the Install guides.
 
-   **You must supply a path to a topaz bootstrap globals file**. The example file 
+   **You must supply a path to a topaz bootstrap globals file**. 
+
+   The example file 
    *$WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz* will work unless you 
    are using a later version of GLASS. See the 
    [Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file) section 
@@ -42,6 +44,7 @@ three things:
    > sections in **Chapter 4. Upgrading Seaside/GLASS Applications** of the Install guides.
 
    **You must supply a path to a topaz application load script**.
+
    You must adapt your own load script for use as part of the upgrade process. See the
    [Execute *application-load* topaz file](#6-execute-application-load-topaz-file) section
    for details.
