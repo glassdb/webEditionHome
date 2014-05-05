@@ -348,14 +348,13 @@ is specified, but this file along with the other *load* files in the directory:
 
 are simply example scripts. To create your own *application-load* file, you should take the topaz script
 that you use to load your code into GemStone/S and modify it so that it will perform as an *application-load*
-script.
-
-You need to add a **MCPerformPostloadNotification** handler to your load script and only allow the initialization 
-of classes that are needed for the upgrade. The following code can be used as a template:
+script. To do so, you need to add a **MCPerformPostloadNotification** handler to your load script and 
+only allow the initialization of classes that are needed for the upgrade. The following code can be
+used as a template:
 
 ```Smalltalk
 | performInitialization |
-performInitialization := #("class names that need to have their #initialization method run during upgrade").
+performInitialization := #("names of class needing class initialization during upgrade").
 [
 "<...your application load code...>"
 ] on: MCPerformPostloadNotification do: [:ex |
