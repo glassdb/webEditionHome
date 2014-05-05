@@ -23,6 +23,12 @@ three things:
    >  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the Install guides.
 
    **This step is done automatically as part of the script and requires no customization**.
+
+   See the [Copy extent and remove tranlog files 
+   [**OPTIONAL**]](#1-copy-extent-and-remove-tranlog-files), 
+   [Start stone](#2-start-stone), and [Run *upgradeImage* script](#3-run-upgradeimage-script) 
+   sections of this document for more details.
+
 2. Install the GLASS code base for GemStone 3.2, which may include different sets of
    packages. 
 
@@ -33,9 +39,11 @@ three things:
 
    The example file 
    *$WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz* will work unless you 
-   are using a later version of GLASS. See the 
+   are using a later version of GLASS. 
+
+   See the 
    [Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file) section 
-   for details.
+   of this document for more details.
 
 3. Install your own application code, which may need to be
    different for GemStone 3.2. 
@@ -45,9 +53,11 @@ three things:
 
    **You must supply a path to a topaz application load script**.
 
-   You must adapt your own load script for use as part of the upgrade process. See the
+   You must adapt your own load script for use as part of the upgrade process. 
+
+   See the
    [Execute *application-load* topaz file](#6-execute-application-load-topaz-file) section
-   for details.
+   of this document for more details.
 
 ##Before Upgrading
 
