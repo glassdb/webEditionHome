@@ -1,5 +1,21 @@
 #Upgrade to GemStone 3.2
 
+**Table of Contents**
+
+---
+
+1. [Introduction](#Introduction)
+2. [Before Upgrading](#before-upgrading)
+3. [Upgrade Script](#upgrade-script)
+4. [Upgrade Error Diagnostics](#upgrade-error-diagnostics)
+   * [Common *upgradeImage* Errors](#common-upgradeimage-errors)
+   * [Common *upgradeSeasideImage* Errors](#common-upgradeseasideimage-errors)
+   * [Interpretting *topazerrors.log* files](#interpretting-topazerrorslog-files)
+   
+---
+
+##Introduction
+
 ---
 
 **READ THE INSTALL GUIDES for [Linux][1] or [Mac][2] FIRST**. 
