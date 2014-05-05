@@ -1,6 +1,6 @@
 #Upgrade to GemStone 3.2
 
-**Table of Contents**
+##Table of Contents
 
 ---
 
