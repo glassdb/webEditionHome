@@ -17,21 +17,21 @@ three things:
 1. Install the GemStone/S Core code base for GemStone 3.2, which may include new
    methods and classes. 
 
-   **This step is done automatically and requires no customization**.
+   **This step is done automatically as part of the script and requires no customization**.
 2. Install the GLASS code base for GemStone 3.2, which may include different sets of
    packages. 
 
-   **You must supply a path to the bootstrap globals file**. The example file 
+   **You must supply a path to a topaz bootstrap globals file**. The example file 
    *$WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz* will work unless you 
    are using a later version of GLASS. See the 
-   [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file) section 
+   [Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file) section 
    for details.
 3. Install your own application code, which may need to be
    different for GemStone 3.2. 
 
-   **You must supply a path to the topaz application load script**.
+   **You must supply a path to a topaz application load script**.
    You must adapt your own load script for use as part of the upgrade process. See the
-   [Execute *application-load* topaz file](#execute-application-load-topaz-file) section
+   [Execute *application-load* topaz file](#6-execute-application-load-topaz-file) section
    for details.
 
 ##Before Upgrading
@@ -126,12 +126,12 @@ isn't required.
 The [upgrade.sh script][3] automates the 6 main steps of the GemStone
 upgrade process:
 
-1. [Copy extent and remove tranlog files [**OPTIONAL**]](#copy-extent-and-remove-tranlog-files)
-2. [Start stone](#start-stone)
-3. [Run *upgradeImage* script](#run-upgradeimage-script)
-4. [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file)
-5. [Run *upgradeSeasideImage* script](#run-upgradeseasideimage-script)
-6. [Execute *application-load* topaz file](#execute-application-load-topaz-file)
+1. [Copy extent and remove tranlog files [**OPTIONAL**]](#1-copy-extent-and-remove-tranlog-files)
+2. [Start stone](#2-start-stone)
+3. [Run *upgradeImage* script](#3-run-upgradeimage-script)
+4. [Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file)
+5. [Run *upgradeSeasideImage* script](#5-run-upgradeseasideimage-script)
+6. [Execute *application-load* topaz file](#6-execute-application-load-topaz-file)
 
 The script is provided as a template that you can customize to fit your
 upgrade process requirements.
