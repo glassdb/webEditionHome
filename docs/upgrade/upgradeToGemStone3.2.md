@@ -6,6 +6,11 @@
 
 ---
 
+The upgrade process can get a little complicated, so I have created a
+[shell script][3] that acts as a driver for the entire Web Edition upgrade
+process. The shell script can be used as is or it can be used as a guide
+for creating a custom upgrade script for your application.
+
 To perform a GemStone/S Web Edition upgrade, you need to accomplish
 three things:
 
@@ -28,45 +33,6 @@ three things:
    You must adapt your own load script for use as part of the upgrade process. See the
    [Execute *application-load* topaz file](#execute-application-load-topaz-file) section
    for details.
-
-The upgrade process can get a little complicated, so I have created a
-[shell script][3] that acts as a driver for the entire Web Edition upgrade
-process. The shell script can be used as is or it can be used as a guide
-for creating a custom upgrade script for your application:
-
-```Shell
-# Script driver for Web Edition upgrades. Before using script
-# READ THE Install Guide for your platform.
-#
-# Before running this script the following environment variables
-# must be set:
-#
-#  GEMSTONE         - directory where GemStone resides
-#  GEMSTONE_DATADIR - directory where the extent and tranlogs reside
-#  GEMSTONE_NAME    - name of the stone
-#  upgradeLogDir    - directory where upgrade log files will be written
-#
-# The script performs the following operations:
-#
-#  1. If -e option is present, the given extent is copied into 
-#     the GemStone 3.2 data directory ($GEMSTONE_DATADIR) and
-#     tranlogs present in the data directory are removed.
-#  2. A stone named $GEMSTONE_NAME is started. If the -C option
-#     is present, the stone is started with the -C option.
-#     The -C option is required if you are upgrading from 2.x.
-#  3. Run the standard upgradeImage script. If an error
-#     occurs details about the error or errors can found in 
-#     topazerrors.log file.
-#  4. Define bootstrap globals by executing the bootstrap globals 
-#     topaz input file specified in the -b option. 
-#  5. Run the standard upgradeSeasideImage script to upgrade
-#     ConfigurationOfGLASS to the correct version. If an error
-#     occurs details about the error or errors can found in 
-#     topazerrors.log file.
-#  6. Upgrade your application code by executing the application load
-#     topaz input file specified in the -a option.
-#
-```
 
 ##Before Upgrading
 
