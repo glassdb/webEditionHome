@@ -1,5 +1,11 @@
 #Upgrade to GemStone 3.2
 
+---
+
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2] FIRST**. 
+
+---
+
 ##Table of Contents
 
 ---
