@@ -22,6 +22,7 @@
    * [5. Run *upgradeSeasideImage* script](#5-run-upgradeseasideimage-script)
    * [6. Execute *application-load* topaz file](#6-execute-application-load-topaz-file)
 
+4. [Post Upgrade](#post-upgrade)
 4. [Upgrade Error Diagnostics](#upgrade-error-diagnostics)
    * [Common *upgradeImage* Errors](#common-upgradeimage-errors)
    * [Common *upgradeSeasideImage* Errors](#common-upgradeseasideimage-errors)
@@ -51,7 +52,7 @@ three things:
    >  Covers the operations starting with **step 5.** of the **Prepare for Upgrade** section through **step 2.** of the 
    > **Perform the Upgrade** section
    >  in **Chapter 2. Upgrading from previous GemStone/S 64 Bit 3.x versions** or 
-   >  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the Install guides.
+   >  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the **Install Guides**.
 
    **This step is done automatically as part of the script and requires no customization**.
 
@@ -63,7 +64,7 @@ three things:
    packages. 
 
    > Covers the operations in the **Configure Seaside Upgrade** section in 
-   > **Chapter 4. Upgrading Seaside/GLASS Applications** of the Install guides.
+   > **Chapter 4. Upgrading Seaside/GLASS Applications** of the **Install Guides**.
 
    **You must supply a path to a topaz bootstrap globals file**. 
 
@@ -79,7 +80,7 @@ three things:
    different for GemStone 3.2. 
 
    > Covers the operations in the **Perform the Upgrade** and **Load your Application Code** 
-   > sections in **Chapter 4. Upgrading Seaside/GLASS Applications** of the Install guides.
+   > sections in **Chapter 4. Upgrading Seaside/GLASS Applications** of the **Install Guides**.
 
    **You must supply a path to a topaz application load script**.
 
@@ -254,7 +255,9 @@ using the following command:
 $GEMSTONE/bin/upgradeImage -s $GEMSTONE_NAME
 ```
 If there are errors during the exectuion of the script, 
-the *topazerrors.log* file contains pointers to the error conditions. 
+the *topazerrors.log* file contains pointers to the error conditions. See 
+[Interpretting topazerrors.log files](#interpretting-topazerrorslog-files)
+for information about interpretting the contents of the *topazerrors.log*.
 
 ### 4. Execute *bootstrap-globals* topaz file
 
@@ -316,9 +319,73 @@ $WE_HOME/bin/upgrade.sh -C -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf
 ```
 
 ### 5. Run *upgradeSeasideImage* script
-Once the *bootstrap-globals* script has been executed, the 
+Once the *bootstrap-globals* script has been run, the *upgradeSeaside* script is run using the following command:
+
+```Shell
+$GEMSTONE/seaside/bin/upgradeSeasideImage -s $GEMSTONE_NAME
+```
+If there are errors during the exectuion of the script, 
+the *topazerrors.log* file contains pointers to the error conditions. See 
+[Interpretting topazerrors.log files](#interpretting-topazerrorslog-files)
+for information about interpretting the contents of the *topazerrors.log*.
 
 ### 6. Execute *application-load* topaz file
+As the final operation in this script, the specified *application-load* topaz script
+is executed. The *application-load* file is specified by the `-a` option:
+
+```Shell
+$WE_HOME/bin/upgrade.sh -C -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf \
+                        -a $WE_HOME/bin/upgrade/loadSeaside3.0.10.tpz \
+                        -b $WE_HOME/bin/upgrade/bootstrapConfigurationOf
+```
+
+In the above example, the file [$WE_HOME/bin/upgrade/loadSeaside3.0.10.tpz](../../bin/upgrade/loadSeaside3.0.10.tpz)
+is specified, but this file along with the other *load* files in the directory:
+
+- [loadGLASS1.tpz](../../bin/upgrade/[loadGLASS1.tpz)
+- [loadSeaside3.0.10.tpz](../../bin/upgrade/loadSeaside3.0.10.tpz)
+- [loadSeaside3.1.0.tpz](../../bin/upgrade/loadSeaside3.1.0.tpz)
+
+are simply example scripts. To create your own *application-load* file, you should take the topaz script
+that you use to load your code into GemStone/S and modify it so that it will perform as an *application-load*
+script.
+
+You need to add a **MCPerformPostloadNotification** handler to your load script and only allow the initialization 
+of classes that are needed for the upgrade. The following code can be used as a template:
+
+```Smalltalk
+| performInitialization |
+performInitialization := #("class names that need to have their #initialization method run during upgrade").
+[
+"<...your application load code...>"
+] on: MCPerformPostloadNotification do: [:ex |
+           (performInitialization includes: ex postloadClass theNonMetaClass name)
+             ifTrue: [
+               "perform initialization"
+               ex resume: true ]
+             ifFalse: [
+               GsFile gciLogServer: ' Skip ', ex postloadClass name asString, ' initialization.'.
+                ex resume: false ] ] 
+```
+
+During the upgrade process, all of the methods are removed from your application classes, so during the load, 
+*Monticello* will rerun **all** class initializations. Obviously, this can lead to all sorts of nasty problems.
+
+99% of the classes do not need to have the class initaliazations run, however, every once in a while, you may 
+find it necessary to run an #initialize method. If you look at the *upgradeSeasideImage* script there are a handful 
+of classes that are explicitly initialized during upgrade.
+
+If there are errors during the exectuion of the script, 
+the *topazerrors.log* file contains pointers to the error conditions. See 
+[Interpretting topazerrors.log files](#interpretting-topazerrorslog-files)
+for information about interpretting the contents of the *topazerrors.log*.
+
+## Post Upgrade
+After the script has completed with no errors, you should continue following
+the upgrade procedure outlined in the *Post-upgrade Application Code Modifications* 
+sections in **Chapter 2. Upgrading from previous 
+GemStone/S 64 Bit 3.x versions** or **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the
+[Linux][1] or [Mac][2] **Install Guides**.
 
 ## Upgrade Error Diagnostics
 

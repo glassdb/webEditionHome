@@ -20,7 +20,8 @@ GsDeployer
       onConflict: [ :ex | ex allow ];
       load: 'ALL' 
          ] on: MCPerformPostloadNotification do: [:ex |
-           (#() includes: ex postloadClass theNonMetaClass name)
+           (#("class names that need to have their #initialization method run during upgrade") 
+               includes: ex postloadClass theNonMetaClass name)
              ifTrue: [ 
                "perform initialization"
                ex resume: true ]
