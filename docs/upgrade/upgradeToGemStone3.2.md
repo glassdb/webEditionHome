@@ -12,7 +12,16 @@
 
 1. [Introduction](#introduction)
 2. [Before Upgrading](#before-upgrading)
+   * [Package Naming Guidelines](#package-naming-guildelines)
+
 3. [Upgrade Script](#upgrade-script)
+   * [1. Copy extent and remove tranlog files](#-cCopy-extent-and-remove-tranlog-files)
+   * [2. Start stone](#2-start-stone)
+   * [3. Run *upgradeImage* script](#3-run-upgradeImage-script)
+   * [4. Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file)
+   * [5. Run *upgradeSeasideImage* script](#5-run-upgradeSeasideImage-script)
+   * [6. Execute *application-load* topaz file](#6-execute-application-load-topaz-file)
+
 4. [Upgrade Error Diagnostics](#upgrade-error-diagnostics)
    * [Common *upgradeImage* Errors](#common-upgradeimage-errors)
    * [Common *upgradeSeasideImage* Errors](#common-upgradeseasideimage-errors)
