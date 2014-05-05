@@ -20,19 +20,26 @@ three things:
    >  Covers the operations starting with **step 5.** of the **Prepare for Upgrade** section through **step 2.** of the 
    > **Perform the Upgrade** section
    >  in **Chapter 2. Upgrading from previous GemStone/S 64 Bit 3.x versions** or 
-   >  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the Install guides
+   >  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the Install guides.
 
    **This step is done automatically as part of the script and requires no customization**.
 2. Install the GLASS code base for GemStone 3.2, which may include different sets of
    packages. 
+
+   > Covers the operations in the **Configure Seaside Upgrade** section in 
+   > **Chapter 4. Upgrading Seaside/GLASS Applications** of the Install guides.
 
    **You must supply a path to a topaz bootstrap globals file**. The example file 
    *$WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz* will work unless you 
    are using a later version of GLASS. See the 
    [Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file) section 
    for details.
+
 3. Install your own application code, which may need to be
    different for GemStone 3.2. 
+
+   > Covers the operations in the **Perform the Upgrade** and **Load your Application Code** 
+   > sections in **Chapter 4. Upgrading Seaside/GLASS Applications** of the Install guides.
 
    **You must supply a path to a topaz application load script**.
    You must adapt your own load script for use as part of the upgrade process. See the
