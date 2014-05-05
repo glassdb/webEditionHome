@@ -4,7 +4,7 @@
 
 ---
 
-1. [Introduction](#Introduction)
+1. [Introduction](#introduction)
 2. [Before Upgrading](#before-upgrading)
 3. [Upgrade Script](#upgrade-script)
 4. [Upgrade Error Diagnostics](#upgrade-error-diagnostics)
