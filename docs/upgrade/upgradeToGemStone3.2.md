@@ -24,8 +24,7 @@ three things:
 
    **This step is done automatically as part of the script and requires no customization**.
 
-   See the [Copy extent and remove tranlog files 
-   [**OPTIONAL**]](#1-copy-extent-and-remove-tranlog-files), 
+   See the [Copy extent and remove tranlog files](#1-copy-extent-and-remove-tranlog-files), 
    [Start stone](#2-start-stone), and [Run *upgradeImage* script](#3-run-upgradeimage-script) 
    sections of this document for more details.
 
