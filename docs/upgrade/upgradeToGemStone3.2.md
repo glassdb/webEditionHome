@@ -17,8 +17,8 @@ three things:
 1. Install the GemStone/S Core code base for GemStone 3.2, which may include new
    methods and classes. 
 
->  Covers the operations starting with **step 5.** of the *Prepare for Upgrade* section through **step 2.** of the 
-> *Perform the Upgrade* section
+>  Covers the operations starting with **step 5.** of the **Prepare for Upgrade** section through **step 2.** of the 
+> **Perform the Upgrade** section
 >  in **Chapter 2. Upgrading from previous GemStone/S 64 Bit 3.x versions** or 
 >  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the Install guides
 
