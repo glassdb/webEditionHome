@@ -43,7 +43,7 @@ release from the GemTalk Systems ftp site, the script:
 
 ## Web Edition Development Environments
 
-1. [GemTools](http://code.google.com/p/glassdb/wiki/GemTools)
+1. [GemTools](../../def/gemtools/gemtools.md)
 2. [Jade](http://programminggems.wordpress.com/2013/10/01/jade/)
 3. [tODE (under development)](https://github.com/dalehenrich/tode)
 
