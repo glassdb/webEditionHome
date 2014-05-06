@@ -6,54 +6,89 @@
 
 ---
 
+##Table of Contents
+
+---
+
+1. [Introduction](#introduction)
+2. [Before Upgrading](#before-upgrading)
+   * [Package Naming Guidelines](#package-naming-guidelines)
+
+3. [Upgrade Script](#upgrade-script)
+   * [1. Copy extent and remove tranlog files](#1-copy-extent-and-remove-tranlog-files)
+   * [2. Start stone](#2-start-stone)
+   * [3. Run *upgradeImage* script](#3-run-upgradeimage-script)
+   * [4. Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file)
+   * [5. Run *upgradeSeasideImage* script](#5-run-upgradeseasideimage-script)
+   * [6. Execute *application-load* topaz file](#6-execute-application-load-topaz-file)
+
+4. [Post Upgrade](#post-upgrade)
+4. [Upgrade Error Diagnostics](#upgrade-error-diagnostics)
+   * [Common *upgradeImage* Errors](#common-upgradeimage-errors)
+   * [Common *upgradeSeasideImage* Errors](#common-upgradeseasideimage-errors)
+   * [Interpretting *topazerrors.log* files](#interpretting-topazerrorslog-files)
+   
+---
+
+##Introduction
+
+---
+
+**READ THE INSTALL GUIDES for [Linux][1] or [Mac][2] FIRST**. 
+
+---
+
+The upgrade process can get a little complicated, so I have created a
+[shell script][3] that acts as a driver for the entire Web Edition upgrade
+process. The shell script can be used as is or it can be used as a guide
+for creating a custom upgrade script for your application.
+
 To perform a GemStone/S Web Edition upgrade, you need to accomplish
 three things:
 
 1. Install the GemStone/S Core code base for GemStone 3.2, which may include new
-   methods and classes.
+   methods and classes. 
+
+   >  Covers the operations starting with **step 5.** of the **Prepare for Upgrade** section through **step 2.** of the 
+   > **Perform the Upgrade** section
+   >  in **Chapter 2. Upgrading from previous GemStone/S 64 Bit 3.x versions** or 
+   >  **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the **Install Guides**.
+
+   **This step is done automatically as part of the script and requires no customization**.
+
+   See the [Copy extent and remove tranlog files](#1-copy-extent-and-remove-tranlog-files), 
+   [Start stone](#2-start-stone), and [Run *upgradeImage* script](#3-run-upgradeimage-script) 
+   sections of this document for more details.
+
 2. Install the GLASS code base for GemStone 3.2, which may include different sets of
-   packages.
+   packages. 
+
+   > Covers the operations in the **Configure Seaside Upgrade** section in 
+   > **Chapter 4. Upgrading Seaside/GLASS Applications** of the **Install Guides**.
+
+   **You must supply a path to a topaz bootstrap globals file**. 
+
+   The example file 
+   *$WE_HOME/bin/upgrade/bootstrapConfigurationOfGLASS1.0-beta.9.1.tpz* will work unless you 
+   are using a later version of GLASS. 
+
+   See the 
+   [Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file) section 
+   of this document for more details.
+
 3. Install your own application code, which may need to be
-   different for GemStone 3.2.
+   different for GemStone 3.2. 
 
-This upgrade process can get a little complicated, so I have created a
-[shell script][3] that acts as a driver for the entire Web Edition upgrade
-process. The shell script can be used as is or it can be used as a guide
-for creating a custom upgrade script for your application:
+   > Covers the operations in the **Perform the Upgrade** and **Load your Application Code** 
+   > sections in **Chapter 4. Upgrading Seaside/GLASS Applications** of the **Install Guides**.
 
-```Shell
-# Script driver for Web Edition upgrades. Before using script
-# READ THE Install Guide for your platform.
-#
-# Before running this script the following environment variables
-# must be set:
-#
-#  GEMSTONE         - directory where GemStone resides
-#  GEMSTONE_DATADIR - directory where the extent and tranlogs reside
-#  GEMSTONE_NAME    - name of the stone
-#  upgradeLogDir    - directory where upgrade log files will be written
-#
-# The script performs the following operations:
-#
-#  1. If -e option is present, the given extent is copied into 
-#     the GemStone 3.2 data directory ($GEMSTONE_DATADIR) and
-#     tranlogs present in the data directory are removed.
-#  2. A stone named $GEMSTONE_NAME is started. If the -C option
-#     is present, the stone is started with the -C option.
-#     The -C option is required if you are upgrading from 2.x.
-#  3. Run the standard upgradeImage script. If an error
-#     occurs details about the error or errors can found in 
-#     topazerrors.log file.
-#  4. Define bootstrap globals by executing the bootstrap globals 
-#     topaz input file specified in the -b option. 
-#  5. Run the standard upgradeSeasideImage script to upgrade
-#     ConfigurationOfGLASS to the correct version. If an error
-#     occurs details about the error or errors can found in 
-#     topazerrors.log file.
-#  6. Upgrade your application code by executing the application load
-#     topaz input file specified in the -a option.
-#
-```
+   **You must supply a path to a topaz application load script**.
+
+   You must adapt your own load script for use as part of the upgrade process. 
+
+   See the
+   [Execute *application-load* topaz file](#6-execute-application-load-topaz-file) section
+   of this document for more details.
 
 ##Before Upgrading
 
@@ -147,12 +182,12 @@ isn't required.
 The [upgrade.sh script][3] automates the 6 main steps of the GemStone
 upgrade process:
 
-1. [Copy extent and remove tranlog files [**OPTIONAL**]](#copy-extent-and-remove-tranlog-files)
-2. [Start stone](#start-stone)
-3. [Run *upgradeImage* script](#run-upgradeimage-script)
-4. [Execute *bootstrap-globals* topaz file](#execute-bootstrap-globals-topaz-file)
-5. [Run *upgradeSeasideImage* script](#run-upgradeseasideimage-script)
-6. [Execute *application-load* topaz file](#execute-application-load-topaz-file)
+1. [Copy extent and remove tranlog files [**OPTIONAL**]](#1-copy-extent-and-remove-tranlog-files)
+2. [Start stone](#2-start-stone)
+3. [Run *upgradeImage* script](#3-run-upgradeimage-script)
+4. [Execute *bootstrap-globals* topaz file](#4-execute-bootstrap-globals-topaz-file)
+5. [Run *upgradeSeasideImage* script](#5-run-upgradeseasideimage-script)
+6. [Execute *application-load* topaz file](#6-execute-application-load-topaz-file)
 
 The script is provided as a template that you can customize to fit your
 upgrade process requirements.
@@ -173,7 +208,7 @@ started.
 
 ---
 
-### Copy extent and remove tranlog files
+### 1. Copy extent and remove tranlog files
 The first step of the upgrade process is to copy the source extent file
 (from GemStone 2.4.x or GemStone 3.1) into the $GEMSTONE_DATADIR and
 make sure that there are no tranlog files left over from previous runs.
@@ -193,7 +228,7 @@ If you omit the `-e` option when running the script no extent copy will
 be performed and you are responsible for making sure that the proper
 extent is present in the $GEMSTONE_DATADIR.
 
-### Start stone
+### 2. Start stone
 Once the source extent is in place, the script starts the stone using
 the stone name specified by the $GEMSTONE_NAME environment variable. The
 stone is started with the following command:
@@ -212,7 +247,7 @@ $GEMSTONE/bin/startstone -C $GEMSTONE_NAME
 After the stone is started, the script waits 5 minutes for the stone to
 be ready for logins.
 
-### Run *upgradeImage* script
+### 3. Run *upgradeImage* script
 Once the stone has been started, the script runs *upgradeImage*
 using the following command:
 
@@ -220,9 +255,11 @@ using the following command:
 $GEMSTONE/bin/upgradeImage -s $GEMSTONE_NAME
 ```
 If there are errors during the exectuion of the script, 
-the *topazerrors.log* file contains pointers to the error conditions. 
+the *topazerrors.log* file contains pointers to the error conditions. See 
+[Interpretting topazerrors.log files](#interpretting-topazerrorslog-files)
+for information about interpretting the contents of the *topazerrors.log*.
 
-### Execute *bootstrap-globals* topaz file
+### 4. Execute *bootstrap-globals* topaz file
 
 As described in the *Configure Seaside Upgrade* section of the 
 **Installation Guides for [Linux][1] or [Mac][2]** there are a number of
@@ -271,8 +308,7 @@ run
 ```
 
 The above is the absolute minimum needed to correctly bootstrap GLASS
-into an upgraded repository.
-
+into an upgraded repository. 
 
 The location of the *bootstrap-globals* file is specified by the `-b` option:
 
@@ -282,12 +318,73 @@ $WE_HOME/bin/upgrade.sh -C -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf
                         -b $WE_HOME/bin/upgrade/bootstrapConfigurationOf
 ```
 
-In the event that you want to follow the original formula of upgrading
-using the full range of **Bootstrap Globals**, then you can create and substitute your 
-own *bootstrap-globals* file. 
+### 5. Run *upgradeSeasideImage* script
+Once the *bootstrap-globals* script has been run, the *upgradeSeaside* script is run using the following command:
 
-### Run *upgradeSeasideImage* script
-### Execute *application-load* topaz file
+```Shell
+$GEMSTONE/seaside/bin/upgradeSeasideImage -s $GEMSTONE_NAME
+```
+If there are errors during the exectuion of the script, 
+the *topazerrors.log* file contains pointers to the error conditions. See 
+[Interpretting topazerrors.log files](#interpretting-topazerrorslog-files)
+for information about interpretting the contents of the *topazerrors.log*.
+
+### 6. Execute *application-load* topaz file
+As the final operation in this script, the specified *application-load* topaz script
+is executed. The *application-load* file is specified by the `-a` option:
+
+```Shell
+$WE_HOME/bin/upgrade.sh -C -e /opt/gemstone/3.1/product/seaside/data/extent0.dbf \
+                        -a $WE_HOME/bin/upgrade/loadSeaside3.0.10.tpz \
+                        -b $WE_HOME/bin/upgrade/bootstrapConfigurationOf
+```
+
+In the above example, the file [$WE_HOME/bin/upgrade/loadSeaside3.0.10.tpz](../../bin/upgrade/loadSeaside3.0.10.tpz)
+is specified, but this file along with the other *load* files in the directory:
+
+- [loadGLASS1.tpz](../../bin/upgrade/[loadGLASS1.tpz)
+- [loadSeaside3.0.10.tpz](../../bin/upgrade/loadSeaside3.0.10.tpz)
+- [loadSeaside3.1.0.tpz](../../bin/upgrade/loadSeaside3.1.0.tpz)
+
+are simply example scripts. To create your own *application-load* file, you should take the topaz script
+that you use to load your code into GemStone/S and modify it so that it will perform as an *application-load*
+script. To do so, you need to add a **MCPerformPostloadNotification** handler to your load script and 
+only allow the initialization of classes that are needed for the upgrade. The following code can be
+used as a template:
+
+```Smalltalk
+| performInitialization |
+performInitialization := #("names of class needing class initialization during upgrade").
+[
+"<...your application load code...>"
+] on: MCPerformPostloadNotification do: [:ex |
+           (performInitialization includes: ex postloadClass theNonMetaClass name)
+             ifTrue: [
+               "perform initialization"
+               ex resume: true ]
+             ifFalse: [
+               GsFile gciLogServer: ' Skip ', ex postloadClass name asString, ' initialization.'.
+                ex resume: false ] ] 
+```
+
+During the upgrade process, all of the methods are removed from your application classes, so during the load, 
+*Monticello* will rerun **all** class initializations. Obviously, this can lead to all sorts of nasty problems.
+
+99% of the classes do not need to have the class initaliazations run, however, every once in a while, you may 
+find it necessary to run an #initialize method. If you look at the *upgradeSeasideImage* script there are a handful 
+of classes that are explicitly initialized during upgrade.
+
+If there are errors during the exectuion of the script, 
+the *topazerrors.log* file contains pointers to the error conditions. See 
+[Interpretting topazerrors.log files](#interpretting-topazerrorslog-files)
+for information about interpretting the contents of the *topazerrors.log*.
+
+## Post Upgrade
+After the script has completed with no errors, you should continue following
+the upgrade procedure outlined in the *Post-upgrade Application Code Modifications* 
+sections in **Chapter 2. Upgrading from previous 
+GemStone/S 64 Bit 3.x versions** or **Chapter 3. Converting from GemStone/S 64 Bit 2.4.xversions** of the
+[Linux][1] or [Mac][2] **Install Guides**.
 
 ## Upgrade Error Diagnostics
 
