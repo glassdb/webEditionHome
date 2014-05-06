@@ -8,11 +8,9 @@ Here are links for downloading a GemTools one-click for GemStone 3.1 or GemStone
 
 ##Getting started
 2. After unzipping download, launch GemTools. 
-
    - Mac: double click on GemTools-1.0-beta.8.7.1-32x.app
    - Windows: enter GemTools-1.0-beta.8.7.1-32x.app directory and double click on GemTools-1.0-beta.8.7.1-32x.lnk
    - Linux: enter GemTools-1.0-beta.8.7.1-32x.app directory and run GemTools-1.0-beta.8.7.1-32x.sh
-
 3. [Define a new Session][4] using the [GemTools Session Menu][5].
 4. Login using the [Login button][5].
 5. [Update the GemTools Launcher][6] to make sure you are using the latest version of GemTools.
