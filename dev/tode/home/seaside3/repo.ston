@@ -1,0 +1,3 @@
+TDObjectGatewayNode{#name:'repo',#contents:'| entry |
+entry := (self topez lookup: \'project\') dotSelfObject.
+entry repositorySpec createRepository directory'}

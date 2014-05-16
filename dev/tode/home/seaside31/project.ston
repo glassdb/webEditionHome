@@ -1,0 +1,14 @@
+TDObjectGatewayNode{#name:'project',#contents:'| project spec |
+spec := (MetacelloMCBaselineOfProjectSpec for: MetacelloMCBaselineProject new)
+  name: \'Seaside31\';
+  className: \'BaselineOfSeaside3\';
+  repository: \'github://glassdb/Seaside31:gemstone3.1/repository\'
+    username: \'\'
+    password: \'\';
+  loads: \'CI\';
+  yourself.
+project := TDProjectSpecEntryDefinition new
+  projectSpec: spec;
+  projectPath: self parent printString;
+  yourself.
+^ project'}
