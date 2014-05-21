@@ -1,5 +1,5 @@
 TDObjectGatewayNode{#name:'project',#contents:'TDGitRepositoryEntryDefinition new
-  projectName: \'WebEditionHome\'
+  projectName: \'Home\'
     projectPath: self parent printString
     status: #(#\'active\');
   gitRepoDirectoryPath: \'/opt/git/webEditionHome\';

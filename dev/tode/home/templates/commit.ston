@@ -98,7 +98,7 @@ DESCRIPTION
   section) the #projectCommit:commitMessage: message is sent to the project tool.
 
   This script can be invoked from the `save` menu item in the Project Browser (see
-  `project --help list` and cls comment TDProjectExtensionsDefinition).
+  `project --help list` and cls comment TDProjectSpecEntryDefinition).
 
   This script is provided to give you the opportunity to customize `commit` behavior 
   for both the command line and Project Browser.
@@ -141,7 +141,7 @@ OPTIONS
     Specifies the <project-name>. 
 
     The first form is used by the Project Browser (see `project --help list` and
-    `cls comment TDProjectExtensionsDefinition>>commandmap` for more information). 
+    `cls comment TDProjectSpecEntryDefinition` for more information). 
 
     The second form can be used to explicitly identify a project. 
 
@@ -167,6 +167,6 @@ SEE ALSO
   project --help
   project --help commit
 
-  cls comment TDMetacelloProjectBrowser TDMetacelloTool TDProjectExtensionsDefinition
+  cls comment TDMetacelloProjectBrowser TDMetacelloTool TDProjectSpecEntryDefinition
 \'
-      topez: topez ] ]',#creationTime:DateAndTime['2014-05-14T15:09:33.8307890892028-07:00'],#modificationTime:DateAndTime['2014-05-15T06:12:50.6598451137542-07:00']}
+      topez: topez ] ]',#creationTime:DateAndTime['2014-05-14T15:09:33.8307890892028-07:00'],#modificationTime:DateAndTime['2014-05-20T20:06:33.2217400074005-07:00']}
