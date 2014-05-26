@@ -21,7 +21,7 @@ available in the `$WE_HOME/bin` directory. The *installWebEdition.sh* script is
 invoked by passing in the version of GemStone that you wish to install:
 
 ```Shell
-$WE_HOME/bin/installWebEdition.sh 3.2
+$WE_HOME/bin/installWebEdition.sh 3.2.0
 ```
 
 The script is intended for use with OS/X and Linux. Besides downloading the
@@ -39,13 +39,74 @@ release from the GemTalk Systems ftp site, the script:
 
 ## Running Web Edition 
 
-[Starting and stopping a stone](http://code.google.com/p/glassdb/wiki/StartingANativeStone)
+### Set up environment variables
+Before starting the GemStone system (aka `starting a stone`), you need to define a
+number of environment variables.
 
+Probably the most important environment variable is **$GEMSTONE**. **$GEMSTONE**
+defines the root of the product tree where the scripts and utility files for GemStone
+can be found. 
+
+There are a number of environent variables that are used by GemStone and the Web
+Edition.  The file 
+`/opt/gemstone/product/seaside/etc/gemstone.conf` defines the environment variables
+that are used by the scripts in `/opt/gemstone/product/seaside/bin` and
+`/opt/gemstone/product/bin`. As you get more familiar with GemStone you can customize the
+`gemstone.conf` file to match your needs, but for now, I will assume that you using the
+default `gemstone.conf`.
+
+In addition to defining the necessary environment variables, you will also want to have
+$GEMSTONE/bin and $GEMSTONE/seaside/bin in your PATH environment variable so that
+you can easily execute the GemStone shell scripts and executables.
+
+The file `$WE_HOME/bin/defWebEdition` has been created to simplify the process
+of defining the environment variables and updating your $PATH. To use the 
+`defWebEdition` script, perform the following in your shell:
+
+```Shell
+. $WE_HOME/bin/defWebEdition
+```
+
+### Starting GemStone
+
+1. [Starting and Stopping the stone](#starting_and_stopping_the_stone).
+2. [Starting the netldi](#starting_the_netldi).
+3. [GemStone Status](#gemstone_status).
+
+#### Starting and Stopping the stone
+
+```Shell
+startGemstone
+```
+
+```Shell
+stopGemstone
+```
+
+#### Start the netldi
+
+```Shell
+startnet
+```
+
+#### GemStone Status
+
+```Shell
+gslist -lc
+```
+
+```
+Status   Version    Owner    Pid   Port   Started     Type       Name
+------- --------- --------- ----- ----- ------------ ------      ----
+exists  3.2.0     daleh     19522 50377 May 26 13:16 Netldi      gs64ldi
+exists  3.2.0     daleh     19495 52215 May 26 13:16 Stone       seaside
+exists  3.2.0     daleh     19496 52207 May 26 13:16 cache       seaside~90895bd348ba8c27
+```
 ## Web Edition Development Environments
 
 1. [GemTools](../../dev/gemtools/gemtools.md)
 2. [Jade](http://programminggems.wordpress.com/2013/10/01/jade/)
-3. [tODE (under development)](https://github.com/dalehenrich/tode)
+3. [tODE (under development)](./gettingStartedWithTode.md)
 
 ## Seaside
 
