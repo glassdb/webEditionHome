@@ -8,14 +8,14 @@
    Only hard-core users should attempt to use tODE with GemStone 2.4.x.
 
 1. [Install and Start GemStone](#install_and_start_gemstone)
-2. [Build or Download tODE Client](#build_or_download_tode_client)
+2. [Download tODE Client](#download_tode_client)
 
 ## Install and Start GemStone
 
 Before getting started with tODE, you need to [install GemStone][1] and 
 [start the stone and netldi processes][2]. 
 
-## Build or Download tODE Client
+## Download tODE Client
 Once GemStone is up and running, you will need a tODE client. 
 
 Currently the tODE client software can be installed in Pharo1.4, 
@@ -34,18 +34,24 @@ figured out, but until then:
 * Pharo1.4 is usable in both OS X and Linux. For Linux this is the only usable
   platform. For the most part the `CTL` modifier works fine on Linux, 
   but in a couple of cases you must use the `ALT` modifier instead:
-  * CTL-C and CTL-B are not mapped correctly so ALT-C and ALT-B must be
+  * `CTL-C` and `CTL-B` are not mapped correctly so `ALT-C` and `ALT-B` must be
     used instead. There may be others.
 
+With regards to Windows clients, I have not done any testing, so we will learn
+together. 
+
 ### Download tODE Client
-The current version of the one-click tODE client is `0.0.1-p2.0`. 
-Version `0.0.1-p2.0` is based upon [Pharo2.0][4].
-### Build tODE Client
-#### Install Client Code
-#### Install GemStone GCI libraries
+The current version of the one-click tODE client is `0.0.1`. 
+Version `0.0.1-p2.0` is based upon [Pharo2.0][4] and `0.0.1-1.4` is based upon
+Pharo1.4i. Click on the link below to download the Pharo version of your choice:
+
+  * [tODE_0.0.1-p2.0][6]
+  * [tODE_0.0.1-p1.4][7]
 
 [1]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#installing-gemstones
 [2]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#running-web-edition
 [3]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1.app.zip
 [4]: http://old.pharo-project.org/pharo-download/release-2-0
 [5]: http://pharo.org/download
+[6]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p2.0.app.zip
+[7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p1.4.app.zip
