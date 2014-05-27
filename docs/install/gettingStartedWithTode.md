@@ -150,12 +150,15 @@ In the above workspace, you may have noticed the **testLogin:** message. The
 The `testLogin` command can be invoked several different ways:
 
 1. via the **testLogin:** message in a client-side workspace:
+
    ```Smalltalk
    TDShell testLogin: 'seaside'
    ```
 2. via the `tODE Test Login` menu item on the System Menu:
+
    ![tode test login menu item][13]
-3. or via the command line:
+3. via the command line:
+
    ![testLogin shell][14]
 
 You should run the `testLogin` command until you get a successful login message:
