@@ -54,6 +54,7 @@ Pharo1.4i. Click on the link below to download the Pharo version of your choice:
 ### Define tODE home
 Using the `Define tODE Home` menu item on the System Menu to define the root
 directory of your Web Edition checkout (i.e., `/opt/git/webEditionHome`):
+
 ![define tode home menu item][8]
 
 If you haven't already [forked and cloned the Web Edition Home repository][9], 
