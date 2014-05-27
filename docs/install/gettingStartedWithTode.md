@@ -94,7 +94,7 @@ fit on your display.
 The default session description is named `seaside` and is defined in the file 
 `$WE_HOME/dev/tode/client/descriptions`:
 
-```JSON
+```
 OGCustomSessionDescription {
         #name : 'seaside',
         #stoneHost : 'localhost',
@@ -156,5 +156,5 @@ displayed:
 [7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p1.4.app.zip
 [8]: ../images/defineTodeHome.png
 [9]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md
-[10]: ../image/defaultWindowLayout.png
-[11]: ../image/testLoginSample.png
+[10]: ../images/defaultWindowLayout.png
+[11]: ../images/testLoginSample.png
