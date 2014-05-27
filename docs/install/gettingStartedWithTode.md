@@ -9,6 +9,7 @@
 
 1. [Install and Start GemStone](#install_and_start_gemstone)
 2. [Download tODE Client](#download_tode_client)
+3. [Prepare for GemStone Login](#prepare_for_gemstone_login)
 
 ## Install and Start GemStone
 
@@ -50,7 +51,15 @@ Pharo1.4i. Click on the link below to download the Pharo version of your choice:
 
 ## Prepare for GemStone Login
 
+### Define tODE home
+Using the `Define tODE Home` menu item on the System Menu to define the root
+directory of your Web Edition checkout (i.e., `/opt/git/webEditionHome`):
 ![define tode home menu item][8]
+
+If you haven't already [forked and cloned the Web Edition Home repository][9], 
+now is a good time to do so. 
+
+With `tODE Home` defined, you should now `Update tODE Client` using the tODE System Menu.
 
 [1]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#installing-gemstones
 [2]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#running-web-edition
@@ -59,4 +68,6 @@ Pharo1.4i. Click on the link below to download the Pharo version of your choice:
 [5]: http://pharo.org/download
 [6]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p2.0.app.zip
 [7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p1.4.app.zip
-[8]: ../images/defineTodeHome.png
+[8]: ../images/defineTodeHome.png =125x
+[9]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md
+
