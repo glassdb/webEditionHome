@@ -48,6 +48,10 @@ Pharo1.4i. Click on the link below to download the Pharo version of your choice:
   * [tODE_0.0.1-p2.0][6]
   * [tODE_0.0.1-p1.4][7]
 
+## Prepare for GemStone Login
+
+![define tode home menu item][8]
+
 [1]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#installing-gemstones
 [2]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#running-web-edition
 [3]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1.app.zip
@@ -55,3 +59,4 @@ Pharo1.4i. Click on the link below to download the Pharo version of your choice:
 [5]: http://pharo.org/download
 [6]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p2.0.app.zip
 [7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p1.4.app.zip
+[8]: ../images/defineTodeHome.png
