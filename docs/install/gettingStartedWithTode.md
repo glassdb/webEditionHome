@@ -10,6 +10,7 @@
 1. [Install and Start GemStone](#install_and_start_gemstone)
 2. [Download tODE Client](#download_tode_client)
 3. [Prepare for GemStone Login](#prepare_for_gemstone_login)
+4. [Open tODE Shell](#open_tode_shell)
 
 ## Install and Start GemStone
 
@@ -58,7 +59,9 @@ The tODE System Menu:
 
 ![tODE System Menu][8]
 
-is your entrypoint for setting up and controlling tODE. Before using tODE for the 
+is your entrypoint for setting up and controlling tODE. 
+
+Before using tODE for the 
 first time you will need to perform the following operations:
 
 1. [Define tODE Home](#define_tode_home)
@@ -66,6 +69,7 @@ first time you will need to perform the following operations:
 3. [Choose tODE Window Layout](#choose_tode_window_layout)
 4. [Define tODE Session Description](#define_tode_session_description)
 5. [Test tODE Login](#test_tode_login)
+6. [Install tODE on Server](#install_tode_on_server)
 
 ### Define tODE home
 Using the `Define tODE Home` menu item on the System Menu to define the root
@@ -174,6 +178,46 @@ Tode not installed
 
 indicate that tODE needs to be installed.
 
+###Install tODE on Server
+
+To install tODE on the server, use `tODE Install` menu item:
+
+![tODE Install menu item][15]
+
+The `tODE install` menu item actually executes the script located in the file
+`$WE_HOME//dev/tode/client/scripts/installTode`:
+
+```Shell
+updateClient --clientRepo=github://dalehenrich/tode:master/repository
+updateServer --clientScriptPath=scripts
+bu backup tode.dbf
+mount /opt/git/webEditionHome/dev/tode/home /
+logout
+bu backup home.dbf
+```
+
+As you can see, script starts by updating the client-side code, then updates the 
+server-side code, followed by a backup to a file
+named `tode.dbf`, execution of the `mount` 
+command (more on that in a bit), and finally a backup to a file name `home.dbf`.
+
+If you have cloned your webEditionHome git repository on the server
+in a different location than
+`/opt/git`, then you need to edit the file `$WE_HOME//dev/tode/client/scripts/installTode`
+to correct the path for the `mount` command.
+
+##Open tODE Shell
+
+Once tODE has been successfuly installed on the server. You can
+use the tODE System Menu:
+
+![tODE Shell menu item][16]
+
+to open the tODE shell window:
+
+![tODE Shell][17]
+
+
 [1]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#installing-gemstones
 [2]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#running-web-edition
 [3]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1.app.zip
@@ -188,4 +232,6 @@ indicate that tODE needs to be installed.
 [12]: ../images/windowLayoutChoices.png
 [13]: ../images/testLoginMenuItem.png
 [14]: ../images/testLoginShellCommand.png
-
+[15]: ../images/installTodeMenuItem.png
+[16]: ../images/todeShellMenuItem.png
+[17]: ../images/todeShell.png
