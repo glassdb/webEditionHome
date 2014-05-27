@@ -1,0 +1,17 @@
+TDObjectGatewayNode{#name:'project',#contents:'| project commandMap |
+project := TDProjectSpecEntryDefinition new
+  baseline: \'Tode\'
+    repository: \'filetree:///opt/git/tode/repository\'
+    loads: \'GemStone Dev\';
+  projectPath: self parent printString;
+  status: #(#\'active\');
+  yourself.
+commandMap := Dictionary new
+  at: \'save\' put: \'commit\';
+  at: \'commitMessage\' put: \'commitMessage\';
+  at: \'load\' put: \'load\';
+  at: \'diff\' put: \'diff\';
+  yourself.
+false
+  ifTrue: [ project commandMap: commandMap ].
+^ project'}
