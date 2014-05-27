@@ -65,6 +65,7 @@ first time you will need to perform the following operations:
 2. [Update tODE Client](#update_tode_client)
 3. [Choose tODE Window Layout](#choose_tode_window_layout)
 4. [Define tODE Session Description](#define_tode_session_description)
+5. [Test tODE Login](#test_tode_login)
 
 ### Define tODE home
 Using the `Define tODE Home` menu item on the System Menu to define the root
@@ -87,7 +88,9 @@ This is the default window layout for tODE based on the `mac_PharoDefault` layou
 ![default window layout][10]
 
 Using the `tODE Window Layout` menu item you can choose a different layout to better 
-fit on your display.
+fit on your display:
+
+![tODE windowLayout menu][12]
 
 ### Define tODE Session Description
 
@@ -140,12 +143,33 @@ The above workspace will write your changes into the directory
 `$WE_HOME/dev/tode/client/descriptions`, using the name field of the session description
 as the name of the file (the **#exportTo:** message).
 
-The **testLogin:** executes the tODE `testLogin` built-in command and if 
-there any problems with the login, the errors and (hopefully) helpful suggestions are 
-displayed:
+### Test tODE Login
+In the above workspace, you may have noticed the **testLogin:** message. The 
+**testLogin:** message executes the tODE `testLogin` command.
 
-![test login sample][11]
+The `testLogin` command can be invoked several different ways:
 
+1. via the **testLogin:** message in a client-side workspace:
+   ```Smalltalk
+   TDShell testLogin: 'seaside'
+   ```
+2. via the `tODE Test Login` menu item on the System Menu:
+   ![tode test login menu item][13]
+3. or via the command line:
+   ![testLogin shell][14]
+
+You should run the `testLogin` command until you get a successful login message:
+
+![successful test login][11]
+
+Note that the `testLogin` command gives you information about the state of the image. In this case, the lines:
+
+```
+GLASS1 not installed
+Tode not installed
+```
+
+indicate that tODE needs to be installed.
 
 [1]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#installing-gemstones
 [2]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#running-web-edition
@@ -157,4 +181,8 @@ displayed:
 [8]: ../images/defineTodeHome.png
 [9]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md
 [10]: ../images/defaultWindowLayout.png
-[11]: ../images/testLoginSample.png
+[11]: ../images/testLoginSuccessSample.png
+[12]: ../images/windowLayoutChoices.png
+[13]: ../images/testLoginMenuItem.png
+[14]: ../images/testLoginShellCommand.png
+
