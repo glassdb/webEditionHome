@@ -7,10 +7,10 @@
    critical bugs that can cause the vm to crash. 
    Only hard-core users should attempt to use tODE with GemStone 2.4.x.
 
-1. [Install and Start GemStone](#install_and_start_gemstone)
-2. [Download tODE Client](#download_tode_client)
-3. [Prepare for GemStone Login](#prepare_for_gemstone_login)
-4. [Open tODE Shell](#open_tode_shell)
+1. [Install and Start GemStone](#install-and-start-gemstone)
+2. [Download tODE Client](#download-tode-client)
+3. [Prepare for GemStone Login](#prepare-for-gemstone-login)
+4. [Open tODE Shell](#open-tode-shell)
 
 ## Install and Start GemStone
 
@@ -64,12 +64,12 @@ is your entrypoint for setting up and controlling tODE.
 Before using tODE for the 
 first time you will need to perform the following operations:
 
-1. [Define tODE Home](#define_tode_home)
-2. [Update tODE Client](#update_tode_client)
-3. [Choose tODE Window Layout](#choose_tode_window_layout)
-4. [Define tODE Session Description](#define_tode_session_description)
-5. [Test tODE Login](#test_tode_login)
-6. [Install tODE on Server](#install_tode_on_server)
+1. [Define tODE Home](#define-tode-home)
+2. [Update tODE Client](#update-tode-client)
+3. [Choose tODE Window Layout](#choose-tode-window-layout)
+4. [Define tODE Session Description](#define-tode-session-description)
+5. [Test tODE Login](#test-tode-login)
+6. [Install tODE on Server](#install-tode-on-server)
 
 ### Define tODE home
 Using the `Define tODE Home` menu item on the System Menu to define the root
