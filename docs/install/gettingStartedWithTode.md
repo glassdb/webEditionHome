@@ -51,16 +51,101 @@ Pharo1.4i. Click on the link below to download the Pharo version of your choice:
 
 ## Prepare for GemStone Login
 
+If you haven't already [forked and cloned the Web Edition Home repository][9],
+now is a good time to do so.
+
+The tODE System Menu:
+
+![tODE System Menu][8]
+
+is your entrypoint for setting up and controlling tODE. Before using tODE for the 
+first time you will need to perform the following operations:
+
+1. [Define tODE Home](#define_tode_home)
+2. [Update tODE Client](#update_tode_client)
+3. [Choose tODE Window Layout](#choose_tode_window_layout)
+4. [Define tODE Session Description](#define_tode_session_description)
+
 ### Define tODE home
 Using the `Define tODE Home` menu item on the System Menu to define the root
 directory of your Web Edition checkout (i.e., `/opt/git/webEditionHome`):
+### Update tODE Client
+The `Update tODE Client` menu item updates the client-side tODE code using the
+sript defined in `$WE_HOME/dev/tode/client/scripts/updateClient. By default the
+following script is used:
 
-![define tode home menu item][8]
+```
+updateClient --clientRepo=github://dalehenrich/tode:master/repository
+```
 
-If you haven't already [forked and cloned the Web Edition Home repository][9], 
-now is a good time to do so. 
+As you gain more experience with tODE you may want to customize the script so that
+you can use your own client-side tODE repository.
 
-With `tODE Home` defined, you should now `Update tODE Client` using the tODE System Menu.
+### Choose tODE Window Layout
+This is the default window layout for tODE based on the `mac_PharoDefault` layout:
+
+![default window layout][10]
+
+Using the `tODE Window Layout` menu item you can choose a different layout to better 
+fit on your display.
+
+### Define tODE Session Description
+
+The default session description is named `seaside` and is defined in the file 
+`$WE_HOME/dev/tode/client/descriptions`:
+
+```JSON
+OGCustomSessionDescription {
+        #name : 'seaside',
+        #stoneHost : 'localhost',
+        #stoneName : 'seaside',
+        #gemHost : 'localhost',
+        #netLDI : '50377',
+        #gemTask : 'gemnetobject',
+        #userId : 'DataCurator',
+        #password : 'swordfish',
+        #backupDirectory : '',
+        #gemstoneVersion : '3.2.0'
+        }
+}
+```
+
+For those of you familiar with GemTools, you should recognize fields. 
+If you need to change some of the settings, you can edit the file directly, or using
+the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`:
+
+```Smalltalk
+(OGCustomSessionDescription new
+    name: 'seaside';
+    gemstoneVersion: '3.2.0';
+    adornmentColor: Color lightGreen;
+    stoneHost: 'localhost';
+    stoneName: 'seaside';
+    gemHost: 'localhost';
+    netLDI: '50377';
+    gemTask: 'gemnetobject';
+    userId: 'DataCurator';
+    password: 'swordfish';
+    osUserId: '';
+    osPassword: '';
+    backupDirectory: '';
+    dataDirectory: '';
+    yourself) exportTo: TDShell sessionDescriptionHome.
+TDShell testLogin: 'seaside'.
+```
+
+to adjust the fields to match your installation. 
+
+The above workspace will write your changes into the directory 
+`$WE_HOME/dev/tode/client/descriptions`, using the name field of the session description
+as the name of the file (the **#exportTo:** message).
+
+The **testLogin:** executes the tODE `testLogin` built-in command and if 
+there any problems with the login, the errors and (hopefully) helpful suggestions are 
+displayed:
+
+![test login sample][11]
+
 
 [1]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#installing-gemstones
 [2]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#running-web-edition
@@ -71,4 +156,5 @@ With `tODE Home` defined, you should now `Update tODE Client` using the tODE Sys
 [7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p1.4.app.zip
 [8]: ../images/defineTodeHome.png
 [9]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md
-
+[10]: ../image/defaultWindowLayout.png
+[11]: ../image/testLoginSample.png
