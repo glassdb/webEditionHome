@@ -1,6 +1,6 @@
 updateClient --clientRepo=github://dalehenrich/tode:master/repository
 updateServer --clientScriptPath=scripts
 bu backup tode.dbf
-mount --todeHome home /
+mount --todeRoot home /
 logout
 bu backup home.dbf
