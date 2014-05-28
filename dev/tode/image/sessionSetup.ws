@@ -1,4 +1,4 @@
-(OGCustomSessionDescription new
+(TDSessionDescription new
     name: 'seaside';
     gemstoneVersion: '3.2.0';
     adornmentColor: Color lightGreen;
@@ -14,6 +14,6 @@
     backupDirectory: '';
     dataDirectory: '';
     serverGitRoot: '/opt/git';
-    serverTodeHome: '/opt/git/todeHome/dev/tode/home`;
+    serverTodeRoot: '/opt/git/todeHome/dev/tode`;
     yourself) exportTo: TDShell sessionDescriptionHome.
 TDShell testLogin: 'seaside'.
