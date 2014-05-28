@@ -142,7 +142,7 @@ the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`:
     backupDirectory: '';
     dataDirectory: '';
     serverGitRoot: '/opt/git';
-    serverTodeRoot: '/opt/git/todeHome/dev/tode`;
+    serverTodeRoot: '/opt/git/todeHome/dev/tode';
     yourself) exportTo: TDShell sessionDescriptionHome.
 TDShell testLogin: 'seaside'.
 ```
