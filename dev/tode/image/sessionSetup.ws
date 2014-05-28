@@ -13,5 +13,7 @@
     osPassword: '';
     backupDirectory: '';
     dataDirectory: '';
+    serverGitRoot: '/opt/git';
+    serverTodeHome: '/opt/git/todeHome/dev/tode/home`;
     yourself) exportTo: TDShell sessionDescriptionHome.
 TDShell testLogin: 'seaside'.
