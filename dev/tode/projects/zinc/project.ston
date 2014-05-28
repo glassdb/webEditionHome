@@ -1,0 +1,11 @@
+TDObjectGatewayNode{#name:'project',#contents:'| gemstoneVersion repoDescription project |
+gemstoneVersion := System gemVersionAt: #\'gsVersion\'.
+(gemstoneVersion beginsWith: \'2\')
+  ifTrue: [ repoDescription := \'filetree:///opt/git/gs24/zinc/repository\' ]
+  ifFalse: [ repoDescription := \'github://glassdb/zinc:gemstone3.1/repository\' ].
+project := TDProjectSpecEntryDefinition new
+  baseline: \'Zinc\' repository: repoDescription loads: #(\'Core\' \'Tests\');
+  projectPath: self parent printString;
+  status: #(#\'inactive\');
+  yourself.
+^ project'}

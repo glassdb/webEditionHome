@@ -198,6 +198,7 @@ updateClient --clientRepo=github://dalehenrich/tode:master/repository
 updateServer --clientScriptPath=scripts
 bu backup tode.dbf
 mount --todeRoot home /
+mount --todeRoot projects /home
 bu backup home.dbf
 cd 
 ```
