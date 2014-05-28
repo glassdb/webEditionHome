@@ -122,6 +122,9 @@ For those of you familiar with GemTools, you should recognize most of the fields
 Definitely look at the values for **#serverGitRoot** and **#serverTodeRoot** and change 
 them to match your installation: remember that the paths for these two fields
 represent directories on your server machine.
+**50377** is the default netldi port. To determine which port the netldi process
+is listening on, run the [gslist command][18].
+
 If you need to change some of the settings, you can edit the file directly, or using
 the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`:
 
@@ -237,3 +240,4 @@ to open the tODE shell window:
 [15]: ../images/installTodeMenuItem.png
 [16]: ../images/todeShellMenuItem.png
 [17]: ../images/todeShell.png
+[18]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#gemstone-status
