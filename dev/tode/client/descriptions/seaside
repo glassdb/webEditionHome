@@ -1,4 +1,4 @@
-OGCustomSessionDescription {
+TDSessionDescription {
 	#name : 'seaside',
 	#stoneHost : 'localhost',
 	#stoneName : 'seaside',
@@ -8,6 +8,7 @@ OGCustomSessionDescription {
 	#userId : 'DataCurator',
 	#password : 'swordfish',
 	#backupDirectory : '',
-	#gemstoneVersion : '3.2.0'
-	}
+	#gemstoneVersion : '3.2.0',
+        #serverGitRoot : '/opt/git', 
+        #serverTodeRoot : '/opt/git/webEditionHome/dev/tode'
 }

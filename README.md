@@ -15,12 +15,12 @@ with the [GemTalk's Web Edition for GemStone/S 64 Bit][7].
 1. [Web Edition License Options](http://seaside.gemtalksystems.com/docs/GLASS-Pricing-1201.htm),
    [FAQ](http://seaside.gemtalksystems.com/docs/Web_Edition_FAQ.htm) and 
    [announcement](docs/releases/3.2/newLicenseOptionsFor3.2.md)
-1. [Getting Started with the Web Edition](docs/install/gettingStartedWithWebEdition.md)
-2. [GemTalk Systems Resources](docs/gemtalksystems_resources.md)
-2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md)
-3. [GLASS, Seaside, Web Edition terminology](docs/terminology.md)
-4. [Install Seaside3.1.0](docs/install/installSeaside3.1.md)
-5. [Web Servers for Web Edition](docs/webServers/webServersForGLASS.md)
+1. [Getting Started with the Web Edition](docs/install/gettingStartedWithWebEdition.md#getting-started-with-web-edition)
+2. [GemTalk Systems Resources](docs/gemtalksystems_resources.md#gemtalk-systems-resources)
+2. [Upgrading to GemStone 3.2](docs/upgrade/upgradeToGemStone3.2.md#upgrade-to-gemstone-32)
+3. [GLASS, Seaside, Web Edition terminology](docs/terminology.md#glass-seaside-web-edition-terminology)
+4. [Install Seaside3.1.0](docs/install/installSeaside3.1.md#install-seaside310)
+5. [Web Servers for Web Edition](docs/webServers/webServersForGLASS.md#web-servers-for-web-edition)
 
 ## License
 The material in the **Web Edition Home** project is licensed under the 

@@ -1,6 +1,7 @@
 updateClient --clientRepo=github://dalehenrich/tode:master/repository
 updateServer --clientScriptPath=scripts
 bu backup tode.dbf
-mount /opt/git/webEditionHome/dev/tode/home /
-logout
+mount --todeRoot home /
+mount --todeRoot projects /home
 bu backup home.dbf
+cd 

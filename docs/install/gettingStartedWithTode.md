@@ -102,7 +102,7 @@ The default session description is named `seaside` and is defined in the file
 `$WE_HOME/dev/tode/client/descriptions`:
 
 ```
-OGCustomSessionDescription {
+TDSessionDescription {
         #name : 'seaside',
         #stoneHost : 'localhost',
         #stoneName : 'seaside',
@@ -112,17 +112,24 @@ OGCustomSessionDescription {
         #userId : 'DataCurator',
         #password : 'swordfish',
         #backupDirectory : '',
-        #gemstoneVersion : '3.2.0'
-        }
+        #gemstoneVersion : '3.2.0',
+        #serverGitRoot : '/opt/git',
+        #serverTodeRoot : '/opt/git/webEditionHome/dev/tode`
 }
 ```
 
-For those of you familiar with GemTools, you should recognize fields. 
+For those of you familiar with GemTools, you should recognize most of the fields. 
+Definitely look at the values for **#serverGitRoot** and **#serverTodeRoot** and change 
+them to match your installation: remember that the paths for these two fields
+represent directories on your server machine.
+**50377** is the default netldi port. To determine which port the netldi process
+is listening on, run the [gslist command][18].
+
 If you need to change some of the settings, you can edit the file directly, or using
 the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`:
 
 ```Smalltalk
-(OGCustomSessionDescription new
+(TDSessionDescription new
     name: 'seaside';
     gemstoneVersion: '3.2.0';
     adornmentColor: Color lightGreen;
@@ -137,6 +144,8 @@ the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`:
     osPassword: '';
     backupDirectory: '';
     dataDirectory: '';
+    serverGitRoot: '/opt/git';
+    serverTodeRoot: '/opt/git/todeHome/dev/tode';
     yourself) exportTo: TDShell sessionDescriptionHome.
 TDShell testLogin: 'seaside'.
 ```
@@ -191,20 +200,16 @@ The `tODE install` menu item actually executes the script located in the file
 updateClient --clientRepo=github://dalehenrich/tode:master/repository
 updateServer --clientScriptPath=scripts
 bu backup tode.dbf
-mount /opt/git/webEditionHome/dev/tode/home /
-logout
+mount --todeRoot home /
+mount --todeRoot projects /home
 bu backup home.dbf
+cd 
 ```
 
 As you can see, script starts by updating the client-side code, then updates the 
 server-side code, followed by a backup to a file
 named `tode.dbf`, execution of the `mount` 
-command (more on that in a bit), and finally a backup to a file name `home.dbf`.
-
-If you have cloned your webEditionHome git repository on the server
-in a different location than
-`/opt/git`, then you need to edit the file `$WE_HOME//dev/tode/client/scripts/installTode`
-to correct the path for the `mount` command.
+command, and finally a backup to a file name `home.dbf`.
 
 ##Open tODE Shell
 
@@ -235,3 +240,4 @@ to open the tODE shell window:
 [15]: ../images/installTodeMenuItem.png
 [16]: ../images/todeShellMenuItem.png
 [17]: ../images/todeShell.png
+[18]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#gemstone-status

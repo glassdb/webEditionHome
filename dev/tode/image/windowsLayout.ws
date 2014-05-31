@@ -1,4 +1,4 @@
-TDShell todeHome: '/opt/git/glassHome/'.
+TDShell todeHome: '/opt/git/webEditionHome/'.
 
 (TDWindowProperties
   windowOrigin: 5@0.5
