@@ -91,6 +91,10 @@ This is the default window layout for tODE based on the `mac_PharoDefault` layou
 
 ![default window layout][10]
 
+Here is an alternate layout:
+
+![alternate window layout][19]
+
 Using the `tODE Window Layout` menu item you can choose a different layout to better 
 fit on your display:
 
@@ -241,3 +245,4 @@ to open the tODE shell window:
 [16]: ../images/todeShellMenuItem.png
 [17]: ../images/todeShell.png
 [18]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#gemstone-status
+[19]: ../images/alternateWindowLayout.png
