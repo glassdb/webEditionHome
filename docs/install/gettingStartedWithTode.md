@@ -15,7 +15,8 @@
 ## Install and Start GemStone
 
 Before getting started with tODE, you need to [install GemStone][1] and 
-[start the stone and netldi processes][2]. 
+[start the stone and netldi processes][2]. Once you've got your netldi started
+return to this document.
 
 ## Download tODE Client
 Once GemStone is up and running, you will need a tODE client. 
@@ -39,16 +40,28 @@ figured out, but until then:
   * `CTL-C` and `CTL-B` are not mapped correctly so `ALT-C` and `ALT-B` must be
     used instead. There may be others.
 
-With regards to Windows clients, I have not done any testing, so we will learn
-together. 
+With regards to Windows clients, at the moment it appears that the with respect to
+the modifier keys, Windows is similar to Linux in that Pharo1.4 is probably the best
+fit. Unfortunately, the FileTree implementation for `github:` repositories is
+broken for Windows in Pharo1.4. I believe that the FileTree implementation for 
+Windows in Pharo3.0 is functional, but I'm afraid that the keymapping issues aren't
+yet solved and I haven't built a one-click for Pharo3.0 (it appears that there is no 
+on-click available for Pharo3.0 so there's even more work that needs to be done to
+produce a tODE image based on Pharo3.0...). It **is** possible to use a Pharo1.4
+tODE with Windows, but updating the client software is problematic. At the end of 
+the day, I would say that if you need to use a Windows client, you should wait for a 
+bit until I solve the Pharo3.0 issues.
 
 ### Download tODE Client
-The current version of the one-click tODE client is `0.0.1`. 
-Version `0.0.1-p2.0` is based upon [Pharo2.0][4] and `0.0.1-1.4` is based upon
-Pharo1.4i. Click on the link below to download the Pharo version of your choice:
+The current version of the one-click tODE client is `0.0.2`. 
+Version `0.0.1-p2.0` is based upon [Pharo2.0][4] and `0.0.2-1.4` is based upon
+Pharo1.4
+(at the moment, the only the Pharo1.4 version of the `0.0.2` one-click is 
+available).
+Click on the link below to download the Pharo version of your choice:
 
   * [tODE_0.0.1-p2.0][6]
-  * [tODE_0.0.1-p1.4][7]
+  * [tODE_0.0.2-p1.4][7]
 
 ## Prepare for GemStone Login
 
@@ -59,25 +72,40 @@ The tODE System Menu:
 
 ![tODE System Menu][8]
 
-is your entrypoint for setting up and controlling tODE. 
+is your entry point for setting up and controlling tODE. 
 
 Before using tODE for the 
 first time you will need to perform the following operations:
 
-1. [Define tODE Home](#define-tode-home)
+1. [Define WebEdition Root](#define-webedition-root)
 2. [Update tODE Client](#update-tode-client)
 3. [Choose tODE Window Layout](#choose-tode-window-layout)
 4. [Define tODE Session Description](#define-tode-session-description)
 5. [Test tODE Login](#test-tode-login)
 6. [Install tODE on Server](#install-tode-on-server)
 
-### Define tODE home
-Using the `Define tODE Home` menu item on the System Menu to define the root
-directory of your Web Edition checkout (i.e., `/opt/git/webEditionHome`):
+### Define WebEdition Root
+Use the `Define WebEdition Root` menu item on the System Menu to define the root
+directory of your Web Edition checkout (i.e., `/opt/git/webEditionHome`).
+
+Most of the tODE menu items are derived from the contents of the directories
+located in `$WE_HOME/dev/tode/client`, so it is important that you have:
+
+1. Cloned [Web Edition Home][20] to your client machine.
+2. Cloned [Web Edition Home][20] to your server machine, if
+   you are running your server on a remote machine.
+3. Defined the WebEdition root for your client using the  `Define WebEdition Root`
+   or by executing the following expression in a workspace on the client:
+  ```Smalltalk
+  TDShell webEditionRoot: '/opt/git/webEditionHome'.
+  ```
 ### Update tODE Client
+It is always a good idea to update the client software after downloading a new one-click
+image, because the one-click images are not updated nearly as frequently as the tODE
+code base changes.
+
 The `Update tODE Client` menu item updates the client-side tODE code using the
-sript defined in `$WE_HOME/dev/tode/client/scripts/updateClient. By default the
-following script is used:
+sript defined in `$WE_HOME/dev/tode/client/scripts/updateClient`:
 
 ```
 updateClient --clientRepo=github://dalehenrich/tode:master/repository
@@ -87,14 +115,66 @@ As you gain more experience with tODE you may want to customize the script so th
 you can use your own client-side tODE repository.
 
 ### Choose tODE Window Layout
-This is the default window layout for tODE based on the `mac_PharoDefault` layout:
+At this point in time, you should change your system font from *Bitmap Deja Vu Sans* 
+to a mono-spaced font. Many of the tODE windows display textual information that is
+layed out assuming mono-spaced fonts. Compare the **Projects** windows in the two
+layouts below; the first layout is using *Bitmap Deja Vu Sans*
+and the second layout is using *Menlo Regular 9*; notice how the columns are mis-aligned
+in the first layout.
+The Mac, Linux and Windows platforms each have a variety of pleasant
+mono-spaced fonts from which to choose. Over time, I've found that my font preference
+changes as I use different window layouts and different sizes of displays.
+
+Here is the default window layout for tODE based on the `standard-small` layout:
 
 ![default window layout][10]
+
+Here is an example of the `alternate-large` layout:
+
+![alternate window layout][19]
 
 Using the `tODE Window Layout` menu item you can choose a different layout to better 
 fit on your display:
 
 ![tODE windowLayout menu][12]
+
+The `small` layouts are designed for small displays
+and/or large fonts and provide for using the minimum number of windows. 
+The `large` layouts are designed for large displays and/or
+small fonts and provide additional areas for windows.
+
+It is possible to create a custom layout using the `tODE Workspaces > windowsLayout.ws`
+menu item:
+
+![tode workspaces windowlayout.ws menu][21]
+
+The workspace allows you change the proportions of the different layout components
+and the number of extra lists that you'd like to make room for:
+
+```Smalltalk
+"choose TDStandardWindowProperties or 
+ TDAlernativeWindowProperties class for different layouts.
+ Adjust parameters to change  proportions or configuration of 
+ layout. "
+| layoutName sessionDescriptionName propertiesClass |
+"TDShell webEditionRoot:'/opt/git/webEditionHome/'"
+layoutName := 'custom'.
+sessionDescriptionName := 'seaside'.
+propertiesClass := TDStandardWindowProperties.
+(propertiesClass new
+  margin: 3 @ 3;		"inset from edges of display"
+  codeWidthFactor: 0.45;	"% of width devoted to code window"
+  extraLists:2 ;		"number of extra lists"
+  shellHeightFactor: 0.33;	"% of height devoted to shell window"
+  topHeightFactor: 0.25;	"% of height devoted to top windows"
+  yourself) 
+    exportTo: TDShell windowLayoutHome, layoutName.
+TDAbstractWindowProperties install: layoutName.
+TDShell testWindowLayout: sessionDescriptionName.
+```
+
+You can also subclass **TDAbstractWindowProperties** and define a completely different
+window layout for tODE, if you so desire.
 
 ### Define tODE Session Description
 
@@ -126,13 +206,17 @@ represent directories on your server machine.
 is listening on, run the [gslist command][18].
 
 If you need to change some of the settings, you can edit the file directly, or using
-the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`:
+the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`
+to adjust the fields to match your installation:
 
 ```Smalltalk
+| webEditionRoot sessionName |
+webEditionRoot := '/opt/git/webEditionHome/'.
+sessionName := 'seaside'.
+TDShell webEditionRoot: webEditionRoot.
 (TDSessionDescription new
-    name: 'seaside';
+    name: sessionName;
     gemstoneVersion: '3.2.0';
-    adornmentColor: Color lightGreen;
     stoneHost: 'localhost';
     stoneName: 'seaside';
     gemHost: 'localhost';
@@ -145,12 +229,10 @@ the client-side workspace in `$WE_HOME/dev/tode/image/sessionSetup.ws`:
     backupDirectory: '';
     dataDirectory: '';
     serverGitRoot: '/opt/git';
-    serverTodeRoot: '/opt/git/todeHome/dev/tode';
+    serverTodeRoot: webEditionRoot, '/dev/tode`;
     yourself) exportTo: TDShell sessionDescriptionHome.
-TDShell testLogin: 'seaside'.
+TDShell testLogin: sessionName.
 ```
-
-to adjust the fields to match your installation. 
 
 The above workspace will write your changes into the directory 
 `$WE_HOME/dev/tode/client/descriptions`, using the name field of the session description
@@ -229,7 +311,7 @@ to open the tODE shell window:
 [4]: http://old.pharo-project.org/pharo-download/release-2-0
 [5]: http://pharo.org/download
 [6]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p2.0.app.zip
-[7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p1.4.app.zip
+[7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.2-p1.4.app.zip
 [8]: ../images/defineTodeHome.png
 [9]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md
 [10]: ../images/defaultWindowLayout.png
@@ -241,3 +323,6 @@ to open the tODE shell window:
 [16]: ../images/todeShellMenuItem.png
 [17]: ../images/todeShell.png
 [18]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#gemstone-status
+[19]: ../images/alternateWindowLayout.png
+[20]: https://github.com/glassdb/webEditionHome
+[21]: ../images/todeWindowsLayoutWorkspaceMenuItem.png

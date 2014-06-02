@@ -1,7 +1,10 @@
+| webEditionRoot sessionName |
+webEditionRoot := '/opt/git/webEditionHome/'.
+sessionName := 'seaside'.
+TDShell webEditionRoot: webEditionRoot.
 (TDSessionDescription new
-    name: 'seaside';
+    name: sessionName;
     gemstoneVersion: '3.2.0';
-    adornmentColor: Color lightGreen;
     stoneHost: 'localhost';
     stoneName: 'seaside';
     gemHost: 'localhost';
@@ -14,6 +17,6 @@
     backupDirectory: '';
     dataDirectory: '';
     serverGitRoot: '/opt/git';
-    serverTodeRoot: '/opt/git/todeHome/dev/tode';
+    serverTodeRoot: webEditionRoot, '/dev/tode`;
     yourself) exportTo: TDShell sessionDescriptionHome.
-TDShell testLogin: 'seaside'.
+TDShell testLogin: sessionName.
