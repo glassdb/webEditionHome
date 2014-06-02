@@ -53,12 +53,15 @@ the day, I would say that if you need to use a Windows client, you should wait f
 bit until I solve the Pharo3.0 issues.
 
 ### Download tODE Client
-The current version of the one-click tODE client is `0.0.1`. 
-Version `0.0.1-p2.0` is based upon [Pharo2.0][4] and `0.0.1-1.4` is based upon
-Pharo1.4i. Click on the link below to download the Pharo version of your choice:
+The current version of the one-click tODE client is `0.0.2`. 
+Version `0.0.1-p2.0` is based upon [Pharo2.0][4] and `0.0.2-1.4` is based upon
+Pharo1.4
+(at the moment, the only the Pharo1.4 version of the `0.0.2` one-click is 
+available).
+Click on the link below to download the Pharo version of your choice:
 
   * [tODE_0.0.1-p2.0][6]
-  * [tODE_0.0.1-p1.4][7]
+  * [tODE_0.0.2-p1.4][7]
 
 ## Prepare for GemStone Login
 
@@ -308,7 +311,7 @@ to open the tODE shell window:
 [4]: http://old.pharo-project.org/pharo-download/release-2-0
 [5]: http://pharo.org/download
 [6]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p2.0.app.zip
-[7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.1-p1.4.app.zip
+[7]: http://seaside.gemtalksystems.com/tODE/tODE_0.0.2-p1.4.app.zip
 [8]: ../images/defineTodeHome.png
 [9]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md
 [10]: ../images/defaultWindowLayout.png
