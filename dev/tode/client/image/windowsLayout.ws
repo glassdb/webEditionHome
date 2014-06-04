@@ -18,3 +18,4 @@ propertiesClass := TDStandardWindowProperties.
 TDAbstractWindowProperties install: layoutName.
 TDShell testWindowLayout: sessionDescriptionName.
 
+"TDTopezGemStoneClient windowProperties"
