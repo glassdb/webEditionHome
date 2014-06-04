@@ -1,0 +1,73 @@
+TDScriptLeafNode{#name:'continuation',#contents:'[ :topez :objIn :tokens :command :commandNode | 
+| opts args |
+\"for help: ./continuation -h\"
+command
+  getOptsMixedLongShort:
+    {#(\'help\' $h #\'none\').
+    #(\'age\' nil #\'required\').
+    #(\'create\' nil #\'none\')}
+  optionsAndArguments: [ :options :operands | 
+    opts := options.
+    args := operands ].
+opts
+  at: \'help\'
+  ifAbsent: [ 
+    | ageString |
+    opts
+      at: \'create\'
+      ifPresent: [ :ignored | 
+        [ 
+        #(true false) atRandom
+          ifTrue: [ 
+            (ObjectLogEntry trace: \'Error encountered\') addToLog.
+            self error: \'error\' ]
+          ifFalse: [ 
+            (ObjectLogEntry trace: \'Halt encountered\') addToLog.
+            self halt: \'halt\' ] ]
+          on: Error , Halt
+          do: [ :ex | 
+            (ex isKindOf: Halt)
+              ifTrue: [ RemoteDebuggerLogEntry createContinuationLabeled: \'Halted\' ]
+              ifFalse: [ DebuggerLogEntry createContinuationLabeled: \'Error\' ].
+            (ObjectLogEntry trace: \'Continuation created\') addToLog ] ].
+    opts
+      at: \'age\'
+      ifAbsent: [ ageString := \'--age=`5 minutes`\' ]
+      ifPresent: [ :arg | ageString := \' --age=`\' , arg , \'` \' ].
+    topez evaluateCommandString: \'ol view \' , ageString , \' trace error\' ]
+  ifPresent: [ :ignored | 
+    TDManPage
+      viewManPage:
+        \'NAME
+  continuation - Example for creating and debugging continuations
+
+SYNOPSIS
+  continuation [-h|--help] [--create] [--age=<duration>]
+
+DESCRIPTION
+  Create continuations and/or view trace and error object log entries. Attach to
+  the continuations with a debugger from the object log view.
+
+  ./continuation
+    view the trace and error object log entries created in the last 5 minutes.
+    Basically:
+
+      ol view --age=`5 minutes` trace error
+
+    Select a continuation (bold in the list) and use the `debug continuation` menu 
+    item to bring up a debugger. Note that when you select an item in the Object Log 
+    Browser (`ol view`) an inspector is opened on the ObjectLogEntry.
+
+  ./continuation --create
+    create a random error/halt continuation and view the trace and error object
+    log entries created in the last 5 minutes.
+
+  ./continuation --create --age=<duration>
+    create a random error/halt continue and then view the trace and error object
+    log entries created in the specified duration.
+
+EXAMPLES
+  ./continuation --help
+  ./continuation
+  ./continuation --create --age=`1 minute`\'
+      topez: topez ] ]',#creationTime:DateAndTime['2014-06-03T05:57:46.6528759002685-07:00'],#modificationTime:DateAndTime['2014-06-03T11:33:46.3420009613037-07:00']}
