@@ -99,6 +99,7 @@ located in `$WE_HOME/dev/tode/client`, so it is important that you have:
   ```Smalltalk
   TDShell webEditionRoot: '/opt/git/webEditionHome'.
   ```
+
 ### Update tODE Client
 It is always a good idea to update the client software after downloading a new one-click
 image, because the one-click images are not updated nearly as frequently as the tODE
