@@ -230,7 +230,7 @@ TDShell webEditionRoot: webEditionRoot.
     backupDirectory: '';
     dataDirectory: '';
     serverGitRoot: '/opt/git';
-    serverTodeRoot: webEditionRoot, '/dev/tode`;
+    serverTodeRoot: webEditionRoot, '/dev/tode';
     yourself) exportTo: TDShell sessionDescriptionHome.
 TDShell testLogin: sessionName.
 ```
