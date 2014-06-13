@@ -1,0 +1,6 @@
+TDObjectGatewayNode{#name:'project',#contents:'^ TDProjectSpecEntryDefinition new
+  baseline: \'ServiceVM\'
+    repository: \'github://glassdb/ServiceVM:master/repository\'
+    projectPath: self parent printString;
+  status: #(#\'active\');
+  loads: #(\'default\')'}
