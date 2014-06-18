@@ -15,7 +15,10 @@ Smalltalk
 Transcript
   cr;
   show: '-----Upgrading GLASS to 1.0-beta.9.1'.
-ConfigurationOfGLASS project updateProject.
+Gofer new
+  package: 'ConfigurationOfGLASS';
+  url: 'http://seaside.gemtalksystems.com/ss/MetacelloRepository';
+  load.
 GsDeployer
   deploy: [ (ConfigurationOfGLASS project version: '1.0-beta.9.1') load ].
 System commitTransaction ifFalse: [ nil error: 'commit conflicts' ].
