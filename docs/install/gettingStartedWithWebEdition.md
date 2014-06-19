@@ -84,6 +84,8 @@ stopGemstone
 ```
 
 #### Start the netldi
+If `$WE_HOME` is defined before starting netldi, then all gems launched by netldi
+may use $WE_HOME in file paths.
 
 ```Shell
 startnet
