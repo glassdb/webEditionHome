@@ -1,10 +1,7 @@
-TDObjectGatewayNode{#name:'project',#contents:'| project |
-project := TDProjectSpecEntryDefinition new
+TDObjectGatewayNode{#name:'project',#contents:'TDProjectSpecEntryDefinition new
   baseline: \'Seaside3\'
     repository: \'github://glassdb/Seaside31:gemstone3.1/repository\'
-    loads: #(\'CI\');
+    loads: #(\'Development\' \'Examples\' \'Zinc\' \'FastCGI\' \'Swazoo\');
   projectPath: self parent printString;
-  gitRootPath: \'/opt/git\';
   status: #(#\'active\');
-  yourself.
-^ project'}
+  yourself'}

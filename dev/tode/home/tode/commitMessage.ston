@@ -1,9 +1,0 @@
-TDStringLeafNode{#name:'commitMessage',#contents:'checkpoint ... major overhaul of `project list` ... add support for pure git repository management
-
-- the webEditionHome or todeHome git repository needs to be managed from within
-  tODE ... generic support for managing any old git repo added in
-- refactored the (former) TDAbstractMetacelloRegistrationDefinition renaming it to
-  TDAbstractProjectRegistrationDefinition and jiggering hierarchy. 
-  TDMetacelloRegistrationDefinition survived finding a new place in the hierarchy.
-- TDProjectEntryDefinition (formerly TDProjectExtensionsDefinition) class hierarchy 
-  added to support the on disk project registration node',#creationTime:DateAndTime['2014-02-07T07:56:02.54351401329041-08:00'],#modificationTime:DateAndTime['2014-05-15T19:11:49.9912319183349-07:00']}

@@ -21,4 +21,3 @@ Gofer new
   load.
 GsDeployer
   deploy: [ (ConfigurationOfGLASS project version: '1.0-beta.9.1') load ].
-System commitTransaction ifFalse: [ nil error: 'commit conflicts' ].
