@@ -14,4 +14,3 @@ GsDeployer bulkMigrate: [
       Transcript cr; show: ex description.
       ex resume ];
     load: 'GemStone Dev' ].
-System commitTransaction ifFalse: [ nil error: 'commit conflicts' ].
