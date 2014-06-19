@@ -281,7 +281,7 @@ The `tODE install` menu item actually executes the script located in the file
 
 ```Shell
 updateClient --clientRepo=github://dalehenrich/tode:master/repository
-updateServer --clientScriptPath=scripts
+installServer --clientScriptPath=scripts
 bu backup tode.dbf
 mount --todeRoot home /
 mount --todeRoot projects /home
