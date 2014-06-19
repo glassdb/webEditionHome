@@ -1,6 +1,6 @@
 Transcript
   cr;
-  show: '-----Upgrading Metacello to latest version on master branch'
+  show: '-----Upgrading Metacello to latest version on master branch'.
 GsDeployer bulkMigrate: [ 
   Metacello new
     baseline: 'Metacello';

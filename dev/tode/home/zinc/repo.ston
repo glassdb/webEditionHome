@@ -1,1 +1,6 @@
-TDObjectGatewayNode{#name:'repo',#contents:'(self topez lookup: \'project\') dotSelfObject repository'}
+TDObjectGatewayNode{#name:'repo',#contents:'| projectTool projectEntry projectRegistration |
+projectTool := self topez toolInstanceFor: \'project\'.
+projectEntry := (self topez lookup: \'project\') dotSelfObject.
+projectRegistration := projectTool
+  projectRegistrationDefinitionNamed: projectEntry projectName.
+projectRegistration repository'}

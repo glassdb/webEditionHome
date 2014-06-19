@@ -8,7 +8,7 @@ TDSessionDescription {
 	#userId : 'DataCurator',
 	#password : 'swordfish',
 	#backupDirectory : '',
-	#gemstoneVersion : '3.2.0',
+	#gemstoneVersion : '3.1.0.5',
         #serverGitRoot : '/opt/git', 
         #serverTodeRoot : '/opt/git/webEditionHome/dev/tode'
 }
