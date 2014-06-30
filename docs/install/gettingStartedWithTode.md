@@ -11,6 +11,7 @@
 2. [Download tODE Client](#download-tode-client)
 3. [Prepare for GemStone Login](#prepare-for-gemstone-login)
 4. [Open tODE Shell](#open-tode-shell)
+5. [GitFileTree MergeDriver](#gitfiletree-mergedriver)
 
 ## Install and Start GemStone
 
@@ -281,7 +282,7 @@ The `tODE install` menu item actually executes the script located in the file
 
 ```Shell
 updateClient --clientRepo=github://dalehenrich/tode:master/repository
-updateServer --clientScriptPath=scripts
+installServer --clientScriptPath=scripts
 bu backup tode.dbf
 mount --todeRoot home /
 mount --todeRoot projects /home
@@ -305,6 +306,13 @@ to open the tODE shell window:
 
 ![tODE Shell][17]
 
+##GitFileTree MergeDriver
+Until the monticello metadata directory is removed from FileTree repositories it 
+is a very good idea to install [Thierry Goubier's GitFileTree MergeDriver][22]. With this 
+Pharo-based tool you will never have to manually merge a Monticello version file 
+again. Very easy to install and more than worth the few minutes it takes to run the
+clone and run the make file.
+
 
 [1]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#installing-gemstones
 [2]: https://github.com/glassdb/webEditionHome/blob/master/docs/install/gettingStartedWithWebEdition.md#running-web-edition
@@ -327,3 +335,4 @@ to open the tODE shell window:
 [19]: ../images/alternateWindowLayout.png
 [20]: https://github.com/glassdb/webEditionHome
 [21]: ../images/todeWindowsLayoutWorkspaceMenuItem.png
+[22]: https://github.com/ThierryGoubier/GitFileTree-MergeDriver
