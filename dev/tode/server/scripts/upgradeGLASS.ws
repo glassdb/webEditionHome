@@ -19,5 +19,9 @@ Gofer new
   package: 'ConfigurationOfGLASS';
   url: 'http://seaside.gemtalksystems.com/ss/MetacelloRepository';
   load.
+Gofer new
+  package: 'ConfigurationOfGrease';
+  url: 'http://www.smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main';
+  load.
 GsDeployer
   deploy: [ (ConfigurationOfGLASS project version: '1.0-beta.9.1') load ].
