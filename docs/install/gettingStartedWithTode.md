@@ -46,18 +46,16 @@ fit. Unfortunately, the FileTree implementation for `github:` repositories is
 broken for Windows in Pharo1.4. I believe that the FileTree implementation for 
 Windows in Pharo3.0 is functional, but I'm afraid that the keymapping issues aren't
 yet solved and I haven't built a one-click for Pharo3.0 (it appears that there is no 
-on-click available for Pharo3.0 so there's even more work that needs to be done to
+one-click available for Pharo3.0 so there's even more work that needs to be done to
 produce a tODE image based on Pharo3.0...). It **is** possible to use a Pharo1.4
 tODE with Windows, but updating the client software is problematic. At the end of 
 the day, I would say that if you need to use a Windows client, you should wait for a 
 bit until I solve the Pharo3.0 issues.
 
 ### Download tODE Client
-The current version of the one-click tODE client is `0.0.2`. 
-Version `0.0.1-p2.0` is based upon [Pharo2.0][4] and `0.0.2-1.4` is based upon
+The current version of the one-click tODE client is `0.0.4`. 
+Version `0.0.4-p2.0` is based upon [Pharo2.0][4] and `0.0.4-p1.4` is based upon
 Pharo1.4
-(at the moment, the only the Pharo1.4 version of the `0.0.2` one-click is 
-available).
 Click on the link below to download the Pharo version of your choice:
 
   * [tODE_0.0.4-p2.0][6]
