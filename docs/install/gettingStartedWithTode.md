@@ -18,6 +18,9 @@ Before getting started with tODE, you need to [install GemStone][1] and
 [start the stone and netldi processes][2]. Once you've got your netldi started
 return to this document.
 
+If you haven't already [forked and cloned the Web Edition Home repository][9],
+now is a good time to do so, as well.
+
 ## Download tODE Client
 Once GemStone is up and running, you will need a tODE client. 
 
@@ -61,10 +64,10 @@ Click on the link below to download the Pharo version of your choice:
   * [tODE_0.0.4-p2.0][6]
   * [tODE_0.0.4-p1.4][7]
 
-## Prepare for GemStone Login
+Launch the one-click image by either double clicking on the `*.app` on your Mac 
+or execution the `*.app/tODE-one-click.sh` script on linux.
 
-If you haven't already [forked and cloned the Web Edition Home repository][9],
-now is a good time to do so.
+## Prepare for GemStone Login
 
 The tODE System Menu:
 
@@ -193,7 +196,7 @@ TDSessionDescription {
         #backupDirectory : '',
         #gemstoneVersion : '3.2.0',
         #serverGitRoot : '/opt/git',
-        #serverTodeRoot : '/opt/git/webEditionHome/dev/tode`
+        #serverTodeRoot : '/opt/git/webEditionHome/dev/tode'
 }
 ```
 
